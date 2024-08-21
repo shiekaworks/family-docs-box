@@ -16,7 +16,7 @@ import upload from '@/app/_assets/images/upload_icon.png';
 import xIcon from '@/app/_assets/images/x.png';
 import arrow_down from '@/app/_assets/images/arrow_down.png';
 import { Dropdown } from '@/app/_components/Dropdown';
-import Share from './share/page';
+import Share from './_share/page';
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);

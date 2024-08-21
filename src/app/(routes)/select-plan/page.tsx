@@ -2,7 +2,7 @@
 
 import { poppins, roboto } from '@/app/_assets/fonts';
 import { Header } from '@/app/_components/Header';
-import Payment from '../payment/page';
+import Payment from '../_payment/page';
 import { useState } from 'react';
 
 export default function SelectPlan() {

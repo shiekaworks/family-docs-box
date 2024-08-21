@@ -1,22 +1,22 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import profile from "@/app/_assets/images/Profile.png";
-import home from "@/app/_assets/images/home.png";
-import fam from "@/app/_assets/images/fam.png";
-import settings from "@/app/_assets/images/settings.png";
-import { poppins } from "@/app/_assets/fonts";
-import logOut from "@/app/_assets/images/logout-icon.png";
-import docs from "@/app/_assets/images/Documents 1.png";
-import arrow from "@/app/_assets/images/arrow_back.png";
-import action_1 from "@/app/_assets/images/action_1.png";
-import action_2 from "@/app/_assets/images/action_2.png";
-import action_3 from "@/app/_assets/images/action_3.png";
-import upload from "@/app/_assets/images/upload_icon.png";
-import xIcon from "@/app/_assets/images/x.png";
-import arrow_down from "@/app/_assets/images/arrow_down.png";
-import { Dropdown } from "@/app/_components/Dropdown";
-import Share from "../share/page";
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import profile from '@/app/_assets/images/Profile.png';
+import home from '@/app/_assets/images/home.png';
+import fam from '@/app/_assets/images/fam.png';
+import settings from '@/app/_assets/images/settings.png';
+import { poppins } from '@/app/_assets/fonts';
+import logOut from '@/app/_assets/images/logout-icon.png';
+import docs from '@/app/_assets/images/Documents 1.png';
+import arrow from '@/app/_assets/images/arrow_back.png';
+import action_1 from '@/app/_assets/images/action_1.png';
+import action_2 from '@/app/_assets/images/action_2.png';
+import action_3 from '@/app/_assets/images/action_3.png';
+import upload from '@/app/_assets/images/upload_icon.png';
+import xIcon from '@/app/_assets/images/x.png';
+import arrow_down from '@/app/_assets/images/arrow_down.png';
+import { Dropdown } from '@/app/_components/Dropdown';
+import Share from '../_share/page';
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -186,9 +186,9 @@ export default function Profile() {
                             <span
                               className="my-[13px]"
                               style={{
-                                alignSelf: "stretch",
-                                width: "1px",
-                                backgroundColor: "#E2E2E2",
+                                alignSelf: 'stretch',
+                                width: '1px',
+                                backgroundColor: '#E2E2E2',
                               }}
                             ></span>
                             <Image

@@ -6,7 +6,7 @@ import { Header } from '@/app/_components/Header';
 import { Modal } from '@/app/_components/Modal';
 import cardsIcon from '@/app/_assets/images/cards.png';
 import Image from 'next/image';
-import PaymentConfirmed from '../payment-confirmed/page';
+import PaymentConfirmed from '../_payment-confirmed/page';
 import { useState } from 'react';
 
 export default function Payment({
