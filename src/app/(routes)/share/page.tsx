@@ -1,0 +1,53 @@
+"use client";
+
+import { poppins } from "@/app/_assets/fonts";
+import { Button } from "@/app/_components/Button";
+import { Header } from "@/app/_components/Header";
+import { Modal } from "@/app/_components/Modal";
+import qr from "@/app/_assets/images/sample_qr.png";
+import Image from "next/image";
+import icon_qr from "@/app/_assets/images/icon_qr.png";
+
+export default function Share({
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  isModalOpen: boolean;
+  setIsModalOpen: (isModalOpen: boolean) => void;
+}) {
+  return (
+    <>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
+        <div className="px-16 text-center">
+          <div className="mx-auto">
+            <div className="bg-[#006EBD] p-[20px] pt-[16px] rounded-full w-[80px] h-[80px] mx-auto mb-[30px]">
+              <Image src={icon_qr} alt="Landscape picture" />
+            </div>
+            <h2
+              className={`text-[#222] text-4xl mb-[20px] font-bold ${poppins.className}`}
+            >
+              Share
+            </h2>
+            <p
+              className={`text-[#7B7B7B] text-[20px] font-light mb-[20px] ${poppins.className}`}
+            >
+              Scan QR below to share the file
+            </p>
+            <Image
+              src={qr}
+              alt="Landscape picture"
+              className="mb-[40px] mx-auto"
+            />
+            <Button
+              type="submit"
+              className="w-[175px] px-12"
+              onClick={() => setIsModalOpen(!isModalOpen)}
+            >
+              DONE
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+}
