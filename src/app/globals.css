@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './_assets/styles/reset.css';
+@import "./_assets/styles/reset.css";
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -22,4 +22,14 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+html {
+  font-size: 14px;
+}
+
+.bg-default-100 {
+  background-color: white;
+  height: 44px;
+  @apply border border-gray-300 rounded-3xl px-4 py-3 focus:outline-none focus:border-[#006EBD] focus:border-2;
 }

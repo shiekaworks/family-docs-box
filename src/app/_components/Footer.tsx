@@ -5,7 +5,7 @@ import { poppins } from "@/app/_assets/fonts";
 export const Footer = (): React.JSX.Element => {
   return (
     <div
-      className={`w-full bg-[#252728] text-white text-sm ${poppins.className}`}
+      className={`w-full bg-[#252728] text-white text-md ${poppins.className}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-14 w-full max-w-[1750px] mx-auto px-4 md:px-10 py-4 md:py-2.5">
         <Image
@@ -35,7 +35,7 @@ export const Footer = (): React.JSX.Element => {
             </li>
           </ul>
 
-          <p className="text-center md:text-right text-xs md:text-sm mt-2 md:mt-0">
+          <p className="text-center md:text-right text-xs md:text-md mt-2 md:mt-0">
             © 2024 CentralScottLLC. All rights reserved.
           </p>
         </div>

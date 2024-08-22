@@ -11,28 +11,28 @@ export default function SelectPlan() {
     <>
       <Header isLoggedIn />
       <main className="w-full p-2.5">
-        <div className="grid content-center w-full max-w-[1161px] min-h-screen mx-auto p-10 text-center">
+        <div className="grid content-center w-full max-w-[1161px] min-h-screen mx-auto px-10 py-32 text-center">
           <div className="w-full max-w-[1000px] mx-auto">
             <div className="mb-[60px]">
               <h2
-                className={`mb-2 text-[#222] text-4xl font-bold ${poppins.className}`}
+                className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}
               >
                 Choose your plan
               </h2>
               <p
-                className={`text-[#7B7B7B] text-xl font-light ${poppins.className}`}
+                className={`text-[#7B7B7B] text-lg font-light ${poppins.className}`}
               >
                 This messaging is to be determined
               </p>
             </div>
 
             <div className="flex justify-center">
-              <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6 w-full max-w-6xl gap-[26px]">
+              <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-6 w-full max-w-6xl gap-4">
                 {/* Plan 1 */}
-                <div className="bg-white rounded-[40px] shadow-2xl p-6 px-7 pt-[54px] w-full max-w-xs lg:max-w-[350px] mx-auto border border-gray-200 h-[500px]">
+                <div className="bg-white rounded-[40px] shadow-xl py-14 px-7 w-full max-w-xs lg:max-w-[350px] border border-gray-200 h-[460px]">
                   <div className="text-center">
                     <p
-                      className={`text-lg font-bold text-[#006EBD] ${poppins.className}`}
+                      className={`text-2xl font-bold text-[#006EBD] ${poppins.className}`}
                     >
                       JUST THE TWO OF US
                     </p>
@@ -48,7 +48,7 @@ export default function SelectPlan() {
                     </p>
                   </div>
                   <ul
-                    className={`text-sm text-gray-600 mb-[61px] list-disc text-left pl-5 leading-[15px] ${poppins.className}`}
+                    className={`text-md text-gray-600 mb-[61px] list-disc text-left pl-5 leading-[15px] ${poppins.className}`}
                   >
                     <li className="mb-2">2 Users</li>
                     <li className="mb-2">10 Documents up to 5MB in size</li>
@@ -64,13 +64,13 @@ export default function SelectPlan() {
                 </div>
 
                 {/* Plan 2 (Popular) */}
-                <div className="bg-white rounded-[40px] shadow-2xl p-6 pt-[54px] w-full max-w-xs lg:max-w-[350px] mx-auto relative border-4 border-blue-500 h-[550px]">
+                <div className="bg-white rounded-[40px] shadow-xl py-20 px-7 w-full max-w-xs lg:max-w-[350px] relative border-4 border-blue-500 h-[520px]">
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#5ABAFF] text-white px-3 py-1 text-xs">
                     POPULAR
                   </div>
                   <div className="text-center mt-4">
                     <p
-                      className={`text-lg font-bold text-[#006EBD] ${poppins.className}`}
+                      className={`text-3xl font-bold text-[#006EBD] ${poppins.className}`}
                     >
                       FAMILY PLAN
                     </p>
@@ -101,10 +101,10 @@ export default function SelectPlan() {
                 </div>
 
                 {/* Plan 3 */}
-                <div className="bg-white rounded-[40px] shadow-2xl p-6 px-8 pt-[54px] w-full max-w-xs lg:max-w-[350px] mx-auto border border-gray-200 h-[500px]">
+                <div className="bg-white rounded-[40px] shadow-xl py-14 px-7 w-full max-w-xs lg:max-w-[350px] border border-gray-200 h-[460px]">
                   <div className="text-center">
                     <p
-                      className={`text-lg font-bold text-[#006EBD] ${poppins.className}`}
+                      className={`text-2xl font-bold text-[#006EBD] ${poppins.className}`}
                     >
                       EXTENDED FAMILY PLAN
                     </p>
@@ -115,13 +115,13 @@ export default function SelectPlan() {
                       $24.95
                     </p>
                     <p
-                      className={`text-md text-[#006EBD] mb-[40px] font-bold ${poppins.className}`}
+                      className={`text-md text-[#006EBD] mb-[22px] font-bold ${poppins.className}`}
                     >
                       per month
                     </p>
                   </div>
                   <ul
-                    className={`text-sm text-gray-600 mb-[19px] list-disc text-left pl-5 leading-[20px] ${poppins.className}`}
+                    className={`text-md text-gray-600 mb-[19px] list-disc text-left pl-5 leading-[20px] ${poppins.className}`}
                   >
                     <li className="mb-2">Up to 10 users</li>
                     <li className="mb-2">

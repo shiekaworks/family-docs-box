@@ -20,16 +20,16 @@ export default function Payment({
   return (
     <>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
-        <div className="w-[70vw] mx-auto p-20 bg-white rounded-3xl shadow-2xl z-10">
-          <div className="flex justify-center gap-[40px] mb-10">
+        <div className="mx-auto p-7 lg:p-20 bg-white rounded-3xl shadow-2xl z-10 xs:p-10  xs:m-[20px] xs:w-full xs:max-h-[600px] overflow-y-auto">
+          <div className="flex flex-col md:flex-row justify-center md:gap-[40px] lg:gap-4 gap-7 mb-10">
             <div className="mx-auto">
               <h2
-                className={`text-[#222] text-4xl mb-2 font-bold ${poppins.className}`}
+                className={`text-[#222] text-2xl lg:text-4xl mb-2 font-bold ${poppins.className}`}
               >
                 Payment details
               </h2>
               <p
-                className={`text-[#7B7B7B] text-sm font-light mb-10 ${poppins.className}`}
+                className={`text-[#7B7B7B] text-md font-light mb-10 ${poppins.className}`}
               >
                 Test Credit Card: 4242424242424242, EXP: 12/25, CVV: 123,
                 Zipcode: 02154
@@ -42,7 +42,7 @@ export default function Payment({
                     name="card number"
                     type="text"
                     placeholder="Card Number"
-                    className="text-[24px] px-4 py-3 w-full mb-[20px] border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-sm"
+                    className="text-[14px] px-4 py-3 w-full mb-[20px] border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
                   />
                   <div className="absolute top-[13px] right-4 flex items-center">
                     <Image
@@ -59,14 +59,14 @@ export default function Payment({
                     name="MM/YY"
                     type="text"
                     placeholder="MM/YY"
-                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-sm"
+                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
                   />
                   <input
                     id="CVC"
                     name="CVC"
                     type="text"
                     placeholder="CVC"
-                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-sm"
+                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
                   />
                 </div>
               </div>
@@ -75,11 +75,11 @@ export default function Payment({
                 name="Country"
                 type="text"
                 placeholder="Country"
-                className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-sm"
+                className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
               />
             </div>
             <div
-              className={`border-solid border-0 border-l border-[#E2E2E2] pl-[40px] ${poppins.className}`}
+              className={`border-solid border-0 lg:border-l border-[#E2E2E2] lg:pl-[40px] pt-5 md:pt-0 ${poppins.className}`}
             >
               <h3 className={`text-[#222] text-xl mb-[5px] font-bold`}>
                 JUST THE TWO OF US
@@ -89,7 +89,7 @@ export default function Payment({
                 <span className="font-normal"> Month</span>
               </p>
               <ul
-                className={`text-sm text-gray-600 mb-[19px] list-disc text-left pl-5 ${poppins.className}`}
+                className={`text-md text-gray-600 mb-[19px] list-disc text-left pl-5 ${poppins.className}`}
               >
                 <li>2 Users</li>
                 <li>10 Documents up to 5MB in size</li>

@@ -46,12 +46,12 @@ export default function Login() {
           <div className="grid content-center p-4 lg:p-10 text-center">
             <div className="mb-[30px] lg:mb-[60px]">
               <h2
-                className={`text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}
+                className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}
               >
                 Welcome back to FamilyDocsBox
               </h2>
               <p
-                className={`text-[#7B7B7B] text-lg lg:text-xl font-light ${poppins.className}`}
+                className={`text-[#7B7B7B] text-lg font-light ${poppins.className}`}
               >
                 Login to your account
               </p>
@@ -62,22 +62,22 @@ export default function Login() {
                 className="grid justify-center"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div className="w-[300px] sm:w-[500px]">
+                <div className="w-[300px] sm:w-[400px]">
                   <input
                     id="email"
                     type="email"
                     placeholder="Email address"
-                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-sm focus:outline-none focus:border-[#006EBD] focus:border-2"
+                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                     {...register('email')}
                   />
                   {errors.email && (
-                    <p className="text-red-600 text-sm mt-2">
+                    <p className="mt-2 ml-4 text-red-600 text-sm text-left">
                       {errors.email.message}
                     </p>
                   )}
 
                   <p className="mb-[20px] lg:mb-[30px] pr-3 text-right">
-                    <a href="#" className="text-[#006EBD] text-xs">
+                    <a href="#" className="text-[#006EBD] text-sm underline">
                       Forgot password?
                     </a>
                   </p>

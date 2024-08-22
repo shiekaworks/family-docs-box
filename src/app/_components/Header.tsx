@@ -1,9 +1,9 @@
-import React from 'react';
-import Image from 'next/image';
-import { poppins } from '@/app/_assets/fonts';
-import logOut from '@/app/_assets/images/logout-icon.png';
-import profileIcon from '@/app/_assets/images/profile-icon.png';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import Image from "next/image";
+import { poppins } from "@/app/_assets/fonts";
+import logOut from "@/app/_assets/images/logout-icon.png";
+import profileIcon from "@/app/_assets/images/profile-icon.png";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   isLoggedIn?: boolean | undefined;
@@ -12,12 +12,12 @@ interface HeaderProps {
 export const Header = ({ isLoggedIn }: HeaderProps): React.JSX.Element => {
   const router = useRouter();
   const handleLogout = () => {
-    router.push('/login');
+    router.push("/login");
   };
 
   return (
     <div
-      className={`block lg:absolute lg:top-0 w-full text-sm ${poppins.className}`}
+      className={`block lg:absolute lg:top-0 w-full text-md ${poppins.className}`}
     >
       <div className="w-full max-w-[1750px] mx-auto px-8 py-8 flex flex-wrap md:flex-nowrap">
         <div className="w-full md:w-auto flex justify-center md:justify-start mb-4 md:mb-0">

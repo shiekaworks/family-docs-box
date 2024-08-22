@@ -1,16 +1,37 @@
 import Image from "next/image";
 import action_more from "@/app/_assets/images/action_more.png";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
 interface ModalProps {
   children: React.ReactNode;
 }
 
 export const Dropdown: React.FC<ModalProps> = ({ children }) => {
-  const toggleDropdown = () => setIsOpen(!isOpen);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="inline-block text-left z-50">
+    <div className="inline-block text-left z-50" ref={dropdownRef}>
       <Image
         src={action_more}
         alt="action_more"

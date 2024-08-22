@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties, ReactNode } from "react";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -16,7 +16,7 @@ export const Button = ({
     <button
       {...props}
       className={`
-        px-8 py-3 rounded-full bg-[#006EBD] text-white text-sm font-inter disabled:opacity-70
+        px-8 py-3 rounded-full bg-[#006EBD] text-white text-md font-inter disabled:opacity-70
         ${className}
       `}
       style={style}
