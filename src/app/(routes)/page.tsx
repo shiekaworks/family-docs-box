@@ -1,22 +1,22 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import docs from "@/app/_assets/images/Documents 1.png";
-import arrow from "@/app/_assets/images/arrow_back.png";
-import action_1 from "@/app/_assets/images/action_1.png";
-import action_2 from "@/app/_assets/images/action_2.png";
-import action_3 from "@/app/_assets/images/action_3.png";
-import upload from "@/app/_assets/images/upload_icon.png";
-import search from "@/app/_assets/images/search.png";
-import { Dropdown } from "@/app/_components/Dropdown";
-import Share from "./_share/page";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Sidebar } from "../_components/Sidebar";
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import docs from '@/app/_assets/images/Documents 1.png';
+import arrow from '@/app/_assets/images/arrow_back.png';
+import action_1 from '@/app/_assets/images/action_1.png';
+import action_2 from '@/app/_assets/images/action_2.png';
+import action_3 from '@/app/_assets/images/action_3.png';
+import upload from '@/app/_assets/images/upload_icon.png';
+import search from '@/app/_assets/images/search.png';
+import { Dropdown } from '@/app/_components/Dropdown';
+import Share from './_share/page';
+import { Select, SelectItem } from '@nextui-org/select';
+import { Sidebar } from '../_components/Sidebar';
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [showFamilyKey, setShowFamilyKey] = useState(false);
-  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(["25"]);
+  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(['25']);
 
   const handleSelectionChange = (keys: string) => {
     setSelectedItemsPerPage([keys]);
@@ -73,21 +73,20 @@ export default function Profile() {
                       <div className="w-full">
                         <div className="relative">
                           <input
-                            type={showFamilyKey ? "text" : "password"}
+                            type={showFamilyKey ? 'text' : 'password'}
                             placeholder="Family key"
                             className="w-full border border-gray-300 rounded-3xl px-4 py-3 focus:outline-none focus:border-[#006EBD] focus:border-2"
                           />
                           <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
-                            <img
+                            <Image
                               alt="reset"
                               loading="lazy"
                               width="12"
                               height="16"
                               decoding="async"
-                              srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fx.91c45dff.png&amp;w=16&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fx.91c45dff.png&amp;w=32&amp;q=75 2x"
                               src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fx.91c45dff.png&amp;w=32&amp;q=75"
                               className="mr-2"
-                              style={{ color: "transparent" }}
+                              style={{ color: 'transparent' }}
                             />
                             <svg
                               id="eyeIcon"
