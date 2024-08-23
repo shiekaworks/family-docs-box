@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { poppins } from "@/app/_assets/fonts";
-import logOut from "@/app/_assets/images/logout-icon.png";
-import profileIcon from "@/app/_assets/images/profile-icon.png";
+import LogOutIcon from "@/app/_assets/icons/logout.svg";
+import ProfileIcon from "@/app/_assets/icons/user.svg";
 import { useRouter } from "next/navigation";
 
 interface HeaderProps {
@@ -35,12 +35,7 @@ export const Header = ({ isLoggedIn }: HeaderProps): React.JSX.Element => {
             <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 md:gap-[60px]">
               <div className="flex items-center cursor-pointer flex-col sm:flex-row">
                 <div className="bg-[#006EBD] rounded-2xl h-[30px] w-[30px] p-[5px] sm:mr-[10px]">
-                  <Image
-                    src={profileIcon}
-                    alt="Profile picture"
-                    width={30}
-                    height={30}
-                  />
+                  <ProfileIcon />
                 </div>
                 <p className="pt-[5px] sm:pt-0">Jane Doe</p>
               </div>
@@ -50,12 +45,7 @@ export const Header = ({ isLoggedIn }: HeaderProps): React.JSX.Element => {
                 onClick={handleLogout}
               >
                 <div className="rounded-2xl h-[30px] w-[30px] p-[5px] sm:mr-[10px]">
-                  <Image
-                    src={logOut}
-                    alt="Logout icon"
-                    width={30}
-                    height={30}
-                  />
+                  <LogOutIcon />
                 </div>
                 <p className="pt-[5px] sm:pt-0">Logout</p>
               </button>

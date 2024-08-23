@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import { poppins } from '@/app/_assets/fonts';
-import { Button } from '@/app/_components/Button';
-import { Modal } from '@/app/_components/Modal';
-import Image from 'next/image';
-import check from '@/app/_assets/images/check.png';
-import { useRouter } from 'next/navigation';
+import { poppins } from "@/app/_assets/fonts";
+import { Button } from "@/app/_components/Button";
+import { Modal } from "@/app/_components/Modal";
+import Check from "@/app/_assets/icons/check.svg";
+import { useRouter } from "next/navigation";
 
 export default function PaymentConfirmed({
   isModalOpen,
@@ -18,7 +17,7 @@ export default function PaymentConfirmed({
 
   const handleClick = () => {
     setIsModalOpen(false);
-    router.push('/');
+    router.push("/");
   };
 
   return (
@@ -27,7 +26,7 @@ export default function PaymentConfirmed({
         <div className="flex justify-center gap-[40px] text-center">
           <div className="mx-auto">
             <div className="bg-[#5AAE72] p-[20px] pt-[28px] rounded-full w-[80px] h-[80px] mx-auto mb-[40px]">
-              <Image src={check} alt="Landscape picture" />
+              <Check />
             </div>
             <h2
               className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}

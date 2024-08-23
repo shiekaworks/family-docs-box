@@ -1,12 +1,12 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
-import arrow from '@/app/_assets/images/arrow_back.png';
-import upload from '@/app/_assets/images/upload_icon.png';
-import user_profile from '@/app/_assets/images/user_profile.png';
-import user1 from '@/app/_assets/images/user 1.png';
-import Share from '../_share/page';
-import { Sidebar } from '@/app/_components/Sidebar';
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import ArrowLeft from "@/app/_assets/icons/arrow_left.svg";
+import Upload from "@/app/_assets/icons/upload.svg";
+import user_profile from "@/app/_assets/images/user_profile.png";
+import User1 from "@/app/_assets/icons/user 1.svg";
+import Share from "../_share/page";
+import { Sidebar } from "@/app/_components/Sidebar";
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -17,8 +17,8 @@ export default function Profile() {
         <Sidebar />
         <div className="w-full md:w-4/5 bg-white py-4 px-4 md:py-6 md:px-6 lg:py-8 lg:px-8 rounded-3xl">
           <div className="flex gap-4 items-center mb-6">
-            <Image src={arrow} alt="Landscape picture" width={52} height={52} />
-            <Image src={user1} alt="Landscape picture" width={52} height={52} />
+            <ArrowLeft />
+            <User1 />
             <h2 className="text-lg md:text-xl lg:text-2xl font-extrabold text-[#222222]">
               PROFILE SETTINGS
             </h2>
@@ -37,7 +37,7 @@ export default function Profile() {
                     />
                     <div className="cursor-pointer flex gap-3 mx-auto mt-[31px] w-full justify-center">
                       <input type="file" className="hidden" id="file-upload" />
-                      <Image src={upload} alt="upload" width={24} height={24} />
+                      <Upload />
                       <label htmlFor="file-upload" className="cursor-pointer">
                         Upload Image
                       </label>
@@ -52,7 +52,7 @@ export default function Profile() {
                         <input
                           type="text"
                           placeholder="1234567890"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                           disabled
                         />
                       </div>
@@ -61,7 +61,7 @@ export default function Profile() {
                         <input
                           type="text"
                           placeholder="Account owner"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                           disabled
                         />
                       </div>
@@ -70,7 +70,7 @@ export default function Profile() {
                         <input
                           type="text"
                           value="Jane"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                         />
                       </div>
                       <div>
@@ -78,7 +78,7 @@ export default function Profile() {
                         <input
                           type="text"
                           value="Doe"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                         />
                       </div>
                       <div>
@@ -86,7 +86,7 @@ export default function Profile() {
                         <input
                           type="text"
                           value="+987654321"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                         />
                       </div>
                       <div>
@@ -94,7 +94,7 @@ export default function Profile() {
                         <input
                           type="text"
                           value="janedoe@gmail.com"
-                          className="mt-1 w-full border border-gray-300 rounded-3xl h-16 p-4"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                         />
                       </div>
                     </div>

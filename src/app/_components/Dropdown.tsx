@@ -1,5 +1,5 @@
 import Image from "next/image";
-import action_more from "@/app/_assets/images/action_more.png";
+import MoreIcon from "@/app/_assets/icons/more.svg";
 import { useState, useEffect, useRef } from "react";
 
 interface ModalProps {
@@ -32,11 +32,7 @@ export const Dropdown: React.FC<ModalProps> = ({ children }) => {
 
   return (
     <div className="inline-block text-left z-50" ref={dropdownRef}>
-      <Image
-        src={action_more}
-        alt="action_more"
-        width={23}
-        height={5}
+      <MoreIcon
         className="cursor-pointer"
         aria-expanded={isOpen}
         aria-haspopup="true"

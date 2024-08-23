@@ -1,11 +1,11 @@
-import React from 'react';
-import { poppins } from '@/app/_assets/fonts';
-import Image from 'next/image';
-import profile from '@/app/_assets/images/Profile.png';
-import home from '@/app/_assets/images/home.png';
-import fam from '@/app/_assets/images/fam.png';
-import settings from '@/app/_assets/images/settings.png';
-import logOut from '@/app/_assets/images/logout-icon.png';
+import React from "react";
+import { poppins } from "@/app/_assets/fonts";
+import Image from "next/image";
+import profile from "@/app/_assets/images/Profile.png";
+import HomeIcon from "@/app/_assets/icons/home.svg";
+import FamIcon from "@/app/_assets/icons/family.svg";
+import SettingsIcon from "@/app/_assets/icons/settings.svg";
+import LogOutIcon from "@/app/_assets/icons/logout.svg";
 
 export const Sidebar = (): React.JSX.Element => {
   return (
@@ -39,18 +39,18 @@ export const Sidebar = (): React.JSX.Element => {
             className={`flex gap-3 text-base md:text-lg ${poppins.className}`}
           >
             <span>
-              <Image src={home} alt="profile" width={24} height={24} />
+              <HomeIcon />
             </span>
             <p>Home</p>
           </a>
         </li>
         <li className="mb-6">
           <a
-            href="#"
+            href="/family"
             className={`flex gap-3 text-base md:text-lg ${poppins.className}`}
           >
             <span>
-              <Image src={fam} alt="profile" width={24} height={24} />
+              <FamIcon />
             </span>
             <p>Family</p>
           </a>
@@ -61,7 +61,7 @@ export const Sidebar = (): React.JSX.Element => {
             className={`flex gap-3 text-base md:text-lg ${poppins.className}`}
           >
             <span>
-              <Image src={settings} alt="profile" width={24} height={24} />
+              <SettingsIcon />
             </span>
             <p>Profile Settings</p>
           </a>
@@ -69,7 +69,7 @@ export const Sidebar = (): React.JSX.Element => {
       </ul>
       <div className="flex cursor-pointer items-center absolute bottom-[1.823vw]">
         <div className="rounded-2xl h-8 w-8 p-1 mr-3">
-          <Image src={logOut} alt="Landscape picture" width={30} height={30} />
+          <LogOutIcon />
         </div>
         <p className="pt-1 text-md">Logout</p>
       </div>

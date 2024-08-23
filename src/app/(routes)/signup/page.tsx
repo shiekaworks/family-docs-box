@@ -1,17 +1,17 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
-import bg01 from '@/app/_assets/images/img01.png';
-import { poppins, inter } from '@/app/_assets/fonts';
-import { Button } from '@/app/_components/Button';
-import { Header } from '@/app/_components/Header';
-import fbIcon from '@/app/_assets/images/fb-icon.png';
-import googleIcon from '@/app/_assets/images/google-icon.png';
-import { signupSchema } from '@/app/_models/signup';
+import bg01 from "@/app/_assets/images/img01.png";
+import { poppins, inter } from "@/app/_assets/fonts";
+import { Button } from "@/app/_components/Button";
+import { Header } from "@/app/_components/Header";
+import FbIcon from "@/app/_assets/icons/fb.svg";
+import GoogleIcon from "@/app/_assets/icons/google.svg";
+import { signupSchema } from "@/app/_models/signup";
 
 interface FormData {
   name: string;
@@ -31,8 +31,8 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: FormData): Promise<void> => {
-    console.log('Submitting...', data);
-    router.push('/signup-family');
+    console.log("Submitting...", data);
+    router.push("/signup-family");
   };
 
   return (
@@ -73,7 +73,7 @@ export default function SignUp() {
                     type="text"
                     placeholder="Name"
                     className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register('name')}
+                    {...register("name")}
                   />
                   {errors.name && (
                     <p className="mt-2 ml-4 text-red-600 text-sm text-left">
@@ -88,7 +88,7 @@ export default function SignUp() {
                     type="email"
                     placeholder="Email address"
                     className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register('email')}
+                    {...register("email")}
                   />
                   {errors.email && (
                     <p className="mt-2 ml-4 text-red-600 text-sm text-left">
@@ -100,10 +100,10 @@ export default function SignUp() {
                 <div className="w-[300px] sm:w-[500px] mb-[30px] relative">
                   <input
                     id="password"
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register('password')}
+                    {...register("password")}
                   />
                   <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
                     <svg
@@ -142,7 +142,7 @@ export default function SignUp() {
               </div>
 
               <p>
-                Already have an account?{' '}
+                Already have an account?{" "}
                 <a href="/login" className="text-[#006EBD] underline">
                   Sign in
                 </a>
@@ -152,18 +152,15 @@ export default function SignUp() {
                 <div className="p-6 w-full max-w-[500px]">
                   <div className="mb-4">
                     <button className="flex items-center justify-center w-full px-4 py-3 space-x-2 text-gray-600 border rounded-full hover:bg-gray-50">
-                      <Image
-                        src={googleIcon}
-                        alt="Google"
-                        className="w-6 h-6"
-                      />
+                      <GoogleIcon />
+
                       <span>Continue with Google</span>
                     </button>
                   </div>
 
                   <div className="mb-6">
                     <button className="flex items-center justify-center w-full px-4 py-3 space-x-2 text-gray-600 border rounded-full hover:bg-gray-50">
-                      <Image src={fbIcon} alt="Facebook" className="w-6 h-6" />
+                      <FbIcon />
                       <span>Continue with Facebook</span>
                     </button>
                   </div>

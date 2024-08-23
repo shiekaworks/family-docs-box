@@ -1,17 +1,17 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
-import docs from '@/app/_assets/images/Documents 1.png';
-import arrow from '@/app/_assets/images/arrow_back.png';
-import action_1 from '@/app/_assets/images/action_1.png';
-import action_2 from '@/app/_assets/images/action_2.png';
-import action_3 from '@/app/_assets/images/action_3.png';
-import upload from '@/app/_assets/images/upload_icon.png';
-import search from '@/app/_assets/images/search.png';
+import Docs from '@/app/_assets/icons/Documents 1.svg';
+import ArrowLeft from '@/app/_assets/icons/arrow_left.svg';
+import Edit from '@/app/_assets/icons/action_1.svg';
+import Update from '@/app/_assets/icons/action_2.svg';
+import Delete from '@/app/_assets/icons/action_3.svg';
+import Upload from '@/app/_assets/icons/upload.svg';
+import Search from '@/app/_assets/icons/search.svg';
 import { Dropdown } from '@/app/_components/Dropdown';
 import Share from './_share/page';
 import { Select, SelectItem } from '@nextui-org/select';
 import { Sidebar } from '../_components/Sidebar';
+import Image from 'next/image';
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -28,8 +28,8 @@ export default function Profile() {
         <Sidebar />
         <div className="w-full md:w-4/5 bg-white py-4 px-4 md:py-6 md:px-6 lg:py-8 lg:px-8 rounded-3xl">
           <div className="flex gap-4 items-center mb-6">
-            <Image src={arrow} alt="Landscape picture" width={52} height={52} />
-            <Image src={docs} alt="Landscape picture" width={52} height={45} />
+            <ArrowLeft />
+            <Docs />
             <h2 className="text-lg md:text-xl lg:text-2xl font-extrabold text-[#222222]">
               HOME
             </h2>
@@ -43,13 +43,7 @@ export default function Profile() {
                     <div className="text-center">
                       <input type="file" className="hidden" id="file-upload" />
                       <div className="bg-[#D9D9D9] rounded-full w-12 h-12 mx-auto mb-5 py-2.5">
-                        <Image
-                          src={upload}
-                          alt="Landscape picture"
-                          width={24}
-                          height={24}
-                          className="mx-auto"
-                        />
+                        <Upload className="mx-auto" />
                       </div>
                       <label
                         htmlFor="file-upload"
@@ -160,13 +154,7 @@ export default function Profile() {
                         className="border border-gray-300 rounded-3xl mx-auto p-3 pl-10 w-full focus:outline-none focus:border-[#006EBD] focus:border-2"
                       />
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer">
-                        <Image
-                          src={search}
-                          alt="search"
-                          width={18}
-                          height={18}
-                          className="rounded-full mx-auto"
-                        />
+                        <Search className="rounded-full mx-auto" />
                       </div>
                     </div>
                   </div>
@@ -188,12 +176,16 @@ export default function Profile() {
                     <tbody>
                       <tr className="border-b odd:bg-white even:bg-[#F3F3F3]">
                         <td className="py-3 px-4">Filename.png</td>
-                        <td className="py-3 px-4">08-1-24 01:00 PM</td>
-                        <td className="py-3 px-4">July 29, 2024</td>
-                        <td className="py-3 px-4">Scott</td>
-                        <td className="py-3 px-4">tag1, tag2, tag3</td>
+                        <td className="py-3 px-4 text-right">
+                          08-1-24 01:00 PM
+                        </td>
+                        <td className="py-3 px-4 text-right">July 29, 2024</td>
+                        <td className="py-3 px-4 text-center">Scott</td>
+                        <td className="py-3 px-4 text-center">
+                          tag1, tag2, tag3
+                        </td>
                         <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2">
+                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto">
                             Show Notes
                           </button>
                         </td>
@@ -201,36 +193,18 @@ export default function Profile() {
                         <td className="py-3 px-4">
                           <div className="flex flex-col sm:flex-row gap-3 items-center">
                             <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Image
-                                src={action_1}
-                                alt="action_1"
-                                width={15}
-                                height={15}
-                                className="cursor-pointer"
-                              />
+                              <Edit className="cursor-pointer" />
                             </div>
                             <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Image
-                                src={action_2}
-                                alt="action_2"
-                                width={15}
-                                height={15}
-                                className="cursor-pointer"
-                              />
+                              <Update className="cursor-pointer" />
                             </div>
                             <div className="flex items-center">
-                              <Image
-                                src={action_3}
-                                alt="action_3"
-                                width={15}
-                                height={16}
-                                className="cursor-pointer"
-                              />
+                              <Delete className="cursor-pointer" />
                             </div>
                           </div>
                         </td>
 
-                        <td className="py-3 px-4">
+                        <td className="py-3 px-4 text-center">
                           <Dropdown>
                             <a
                               href="#"
@@ -256,12 +230,16 @@ export default function Profile() {
                       </tr>
                       <tr className="border-b odd:bg-white even:bg-[#F3F3F3]">
                         <td className="py-3 px-4">Filename.png</td>
-                        <td className="py-3 px-4">08-1-24 01:00 PM</td>
-                        <td className="py-3 px-4">July 29, 2024</td>
-                        <td className="py-3 px-4">Scott</td>
-                        <td className="py-3 px-4">tag1, tag2, tag3</td>
+                        <td className="py-3 px-4 text-right">
+                          08-1-24 01:00 PM
+                        </td>
+                        <td className="py-3 px-4 text-right">July 29, 2024</td>
+                        <td className="py-3 px-4 text-center">Scott</td>
+                        <td className="py-3 px-4 text-center">
+                          tag1, tag2, tag3
+                        </td>
                         <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2">
+                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto">
                             Show Notes
                           </button>
                         </td>
@@ -269,36 +247,18 @@ export default function Profile() {
                         <td className="py-3 px-4">
                           <div className="flex flex-col sm:flex-row gap-3 items-center">
                             <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Image
-                                src={action_1}
-                                alt="action_1"
-                                width={15}
-                                height={15}
-                                className="cursor-pointer"
-                              />
+                              <Edit className="cursor-pointer" />
                             </div>
                             <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Image
-                                src={action_2}
-                                alt="action_2"
-                                width={15}
-                                height={15}
-                                className="cursor-pointer"
-                              />
+                              <Update className="cursor-pointer" />
                             </div>
                             <div className="flex items-center">
-                              <Image
-                                src={action_3}
-                                alt="action_3"
-                                width={15}
-                                height={16}
-                                className="cursor-pointer"
-                              />
+                              <Delete className="cursor-pointer" />
                             </div>
                           </div>
                         </td>
 
-                        <td className="py-3 px-4">
+                        <td className="py-3 px-4 text-center">
                           <Dropdown>
                             <a
                               href="#"
