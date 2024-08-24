@@ -1,28 +1,28 @@
-import { nextui } from '@nextui-org/theme';
-import type { Config } from 'tailwindcss';
+import {nextui} from '@nextui-org/theme';
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@nextui-org/theme/dist/components/(select|listbox|divider|popover|button|ripple|spinner|scroll-shadow).js',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/components/(select|listbox|divider|popover|button|ripple|spinner|scroll-shadow).js"
   ],
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['var(--font-poppins)'],
-        inter: ['var(--font-inter)'],
+        poppins: ["var(--font-poppins)"],
+        inter: ["var(--font-inter)"],
       },
       fontSize: {
-        base: '14px',
+        base: "14px",
       },
       backgroundImage: {
-        'custom-gradient':
-          'linear-gradient(90deg, rgba(141,202,244,1) 0%, rgba(0,171,233,0.56) 100%)',
+        "custom-gradient":
+          "linear-gradient(90deg, rgba(141,202,244,1) 0%, rgba(0,171,233,0.56) 100%)",
       },
       screens: {
-        xs: { max: '400px' },
+        xs: { max: "400px" },
       },
     },
   },

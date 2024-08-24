@@ -1,17 +1,17 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
-import bg01 from "@/app/_assets/images/img01.png";
-import { poppins, inter } from "@/app/_assets/fonts";
-import { Button } from "@/app/_components/Button";
-import { Header } from "@/app/_components/Header";
-import FbIcon from "@/app/_assets/icons/fb.svg";
-import GoogleIcon from "@/app/_assets/icons/google.svg";
-import { signupSchema } from "@/app/_models/signup";
+import bg01 from '@/app/_assets/images/img01.png';
+import { poppins, inter } from '@/app/_assets/fonts';
+import { Button } from '@/app/_components/Button';
+import { Header } from '@/app/_components/Header';
+import FbIcon from '@/app/_assets/icons/fb.svg';
+import GoogleIcon from '@/app/_assets/icons/google.svg';
+import { signupSchema } from '@/app/_models/signup';
 
 interface FormData {
   name: string;
@@ -31,8 +31,8 @@ export default function SignUp() {
   });
 
   const onSubmit = async (data: FormData): Promise<void> => {
-    console.log("Submitting...", data);
-    router.push("/signup-family");
+    console.log('Submitting...', data);
+    router.push('/signup-family');
   };
 
   return (
@@ -40,10 +40,10 @@ export default function SignUp() {
       <Header />
       <main className="w-full p-2.5">
         <div className="grid grid-cols-1 lg:grid-cols-[0.65fr_1fr] w-full max-w-[1750px] min-h-screen mx-auto">
-          <div className="flex flex-col justify-between lg:block">
+          <div className="py-10 md:py-0 flex flex-col justify-between lg:block">
             <Image
               src={bg01}
-              alt="Landscape picture"
+              alt=""
               className="w-full h-[300px] lg:h-full object-cover rounded-[30px]"
             />
           </div>
@@ -51,29 +51,26 @@ export default function SignUp() {
           <div className="grid content-center p-4 lg:p-10 text-center">
             <div className="mb-[30px] lg:mb-[60px]">
               <h2
-                className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}
+                className={`mb-1 text-[#222] text-3xl lg:text-4xl font-bold ${poppins.className}`}
               >
                 Welcome to FamilyDocsBox
               </h2>
               <p
-                className={`text-[#7B7B7B] text-lg font-light ${poppins.className}`}
+                className={`text-[#7B7B7B] text-base md:text-lg font-light ${poppins.className}`}
               >
                 Register your account
               </p>
             </div>
 
             <div className={`${inter.className}`}>
-              <form
-                className="grid justify-center"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <div className="w-[300px] sm:w-[500px] mb-5">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="w-full md:max-w-[500px] mx-auto mb-5">
                   <input
                     id="name"
                     type="text"
                     placeholder="Name"
-                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register("name")}
+                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
+                    {...register('name')}
                   />
                   {errors.name && (
                     <p className="mt-2 ml-4 text-red-600 text-sm text-left">
@@ -82,13 +79,13 @@ export default function SignUp() {
                   )}
                 </div>
 
-                <div className="w-[300px] sm:w-[500px] mb-5">
+                <div className="w-full md:max-w-[500px] mx-auto mb-5">
                   <input
                     id="email"
                     type="email"
                     placeholder="Email address"
-                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register("email")}
+                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
+                    {...register('email')}
                   />
                   {errors.email && (
                     <p className="mt-2 ml-4 text-red-600 text-sm text-left">
@@ -97,13 +94,13 @@ export default function SignUp() {
                   )}
                 </div>
 
-                <div className="w-[300px] sm:w-[500px] mb-[30px] relative">
+                <div className="w-full md:max-w-[500px] mx-auto mb-[30px] relative">
                   <input
                     id="password"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
-                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
-                    {...register("password")}
+                    className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
+                    {...register('password')}
                   />
                   <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
                     <svg
@@ -142,7 +139,7 @@ export default function SignUp() {
               </div>
 
               <p>
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <a href="/login" className="text-[#006EBD] underline">
                   Sign in
                 </a>

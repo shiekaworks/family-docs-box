@@ -11,10 +11,10 @@ export const signupSchema = z
 export const signupFamilySchema = z
   .object({
     familyName: z.string(),
-    email1: z.string().email(),
-    email2: z.string().email(),
-    email3: z.string().email(),
-    email4: z.string().email(),
+    email1: z.string().nullable(),
+    email2: z.string().nullable(),
+    email3: z.string().nullable(),
+    email4: z.string().nullable(),
   })
   .required();
 

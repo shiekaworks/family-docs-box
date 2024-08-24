@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { poppins } from "@/app/_assets/fonts";
-import { Button } from "@/app/_components/Button";
-import { Modal } from "@/app/_components/Modal";
-import Check from "@/app/_assets/icons/check.svg";
-import { useRouter } from "next/navigation";
+import { poppins } from '@/app/_assets/fonts';
+import { Button } from '@/app/_components/Button';
+import { Modal } from '@/app/_components/Modal';
+import Check from '@/app/_assets/icons/check.svg';
+import { useRouter } from 'next/navigation';
 
 export default function PaymentConfirmed({
   isModalOpen,
@@ -17,7 +17,7 @@ export default function PaymentConfirmed({
 
   const handleClick = () => {
     setIsModalOpen(false);
-    router.push("/");
+    router.push('/');
   };
 
   return (
@@ -29,12 +29,12 @@ export default function PaymentConfirmed({
               <Check />
             </div>
             <h2
-              className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold ${poppins.className}`}
+              className={`mb-1 text-[#222] text-3xl lg:text-4xl font-bold ${poppins.className}`}
             >
               Payment confirmed!
             </h2>
             <p
-              className={`text-[#7B7B7B] text-lg font-light mb-[60px] ${poppins.className}`}
+              className={`text-[#7B7B7B] text-base md:text-lg font-light mb-[60px] ${poppins.className}`}
             >
               Thank you for purchasing the perfect
               <br />

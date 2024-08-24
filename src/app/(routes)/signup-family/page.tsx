@@ -48,103 +48,101 @@ export default function SignUpFamily() {
       <Header isLoggedIn />
       <main className="w-full p-2.5">
         <div className="flex flex-col lg:flex-row w-full min-h-screen mx-auto">
-          <div className="p-10 text-center w-full pt-[76px] order-2 lg:order-1">
+          <div className="px-5 py-10 text-center w-full md:p-10 md:pt-40 order-2 lg:order-1">
             <div className="w-full lg:w-[615px] lg:float-right">
-              <div className="mb-[60px]">
+              <div className="mb-10 md:mb-[60px]">
                 <h2
                   className={`mb-1 text-[#222] text-3xl lg:text-4xl font-bold ${poppins.className}`}
                 >
                   Add up to four family or
-                  <br />
-                  trusted friends
+                  <br className="hidden md:block" />
+                  &nbsp;trusted friends
                 </h2>
                 <p
-                  className={`text-[#7B7B7B] text-lg font-light ${poppins.className}`}
+                  className={`text-[#7B7B7B] text-base md:text-lg font-light ${poppins.className}`}
                 >
                   What is the name of your family?
                 </p>
               </div>
 
               <div className={`${inter.className}`}>
-                <form
-                  className="grid justify-center"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <div className="w-full lg:w-[500px] mb-5">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className="w-full md:max-w-[500px] mx-auto mb-5">
                     <input
                       id="familyName"
                       type="text"
                       placeholder="Family name"
-                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                       {...register('familyName')}
                     />
                     {errors.familyName && (
-                      <p className="text-red-600 text-md mt-2">
+                      <p className="text-red-600 text-base mt-2">
                         {errors.familyName.message}
                       </p>
                     )}
                   </div>
 
-                  <p className="mb-5 text-[#7B7B7B] text-md">
+                  <p className="mb-5 text-[#7B7B7B] text-sm md:text-base">
                     Users that are part of your account will be able
-                    <br /> to access your account documents
+                    <br className="hidden md:block" />
+                    &nbsp;to access your account documents
                   </p>
 
-                  <div className="w-[300px] sm:w-[500px] mb-5">
+                  <div className="w-full md:max-w-[500px] mx-auto mb-5">
                     <input
                       id="email1"
                       type="email"
                       placeholder="Email address 1"
-                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                       {...register('email1')}
                     />
                     {errors.email1 && (
-                      <p className="text-red-600 text-md mt-2">
+                      <p className="text-red-600 text-base mt-2">
                         {errors.email1.message}
                       </p>
                     )}
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] mb-5">
+                  <div className="w-full md:max-w-[500px] mx-auto mb-5">
                     <input
                       id="email2"
                       type="email"
                       placeholder="Email address 2"
-                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                       {...register('email2')}
                     />
                     {errors.email1 && (
-                      <p className="text-red-600 text-md mt-2">
+                      <p className="text-red-600 text-base mt-2">
                         {errors.email1.message}
                       </p>
                     )}
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] mb-5">
+                  <div className="w-full md:max-w-[500px] mx-auto mb-5">
                     <input
                       id="email3"
                       type="email"
                       placeholder="Email address 3"
-                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                       {...register('email3')}
                     />
                     {errors.email3 && (
-                      <p className="text-red-600 text-md mt-2">
+                      <p className="text-red-600 text-base mt-2">
                         {errors.email3.message}
                       </p>
                     )}
                   </div>
 
-                  <div className="w-[300px] sm:w-[500px] mb-5">
+                  <div className="w-full md:max-w-[500px] mx-auto mb-5">
                     <input
                       id="email4"
                       type="email"
                       placeholder="Email address 4"
-                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                      className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                       {...register('email4')}
                     />
                     {errors.email4 && (
-                      <p className="text-red-600 text-md mt-2">
+                      <p className="text-red-600 text-base mt-2">
                         {errors.email4.message}
                       </p>
                     )}
@@ -161,11 +159,11 @@ export default function SignUpFamily() {
             </div>
           </div>
 
-          <div className="relative w-full overflow-hidden pt-5 lg:pt-[100px] order-1 lg:order-2">
+          <div className="relative w-full overflow-hidden pt-10 lg:pt-[100px] order-1 lg:order-2">
             <Image
               src={bg01}
-              alt="Landscape picture"
-              className="h-[300px] md:h-[500px] lg:h-full object-cover rounded-[30px] lg:float-right w-full lg:w-[800px]"
+              alt=""
+              className="h-[300px] md:h-[500px] lg:h-full object-cover rounded-[30px] lg:float-right w-full lg:w-full"
             />
           </div>
         </div>
@@ -175,24 +173,25 @@ export default function SignUpFamily() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen((prev) => !prev)}
       >
-        <div className="mx-auto lg:p-20 p-10 bg-white rounded-3xl shadow-2xl z-10 xs:m-[20px] xs:w-full xs:max-h-[700px] overflow-y-auto">
+        <div className="mx-auto lg:p-20 px-6 py-10 bg-white rounded-3xl shadow-2xl z-10 xs:m-[20px] xs:w-full xs:max-h-[700px] overflow-y-auto">
           <h2
-            className={`mb-1 text-[#222] text-2xl lg:text-4xl font-bold text-center ${poppins.className}`}
+            className={`mb-1 text-[#222] text-[25px] lg:text-4xl font-bold text-center ${poppins.className}`}
           >
             Set a family password
           </h2>
           <p
-            className={`text-[#7B7B7B] text-lg font-light text-center mb-[40px] ${poppins.className}`}
+            className={`text-[#7B7B7B] text-base md:text-lg font-light text-center mb-8 ${poppins.className}`}
           >
-            Documents are encrypted with this password  <br />
-            (which is not stored on the server).
+            Documents are encrypted with this password
+            <br className="hidden md:block" />
+            &nbsp;(which is not stored on the server).
           </p>
           <div className="w-full lg:w-[500px] mb-[20px] relative mx-auto">
             <input
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
-              className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+              className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
             />
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
               <svg
@@ -218,7 +217,7 @@ export default function SignUpFamily() {
               name="password"
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder="Confirm Password"
-              className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+              className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
             />
 
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
@@ -240,7 +239,7 @@ export default function SignUpFamily() {
             </div>
           </div>
 
-          <div className="flex justify-center gap-[40px]">
+          <div className="flex justify-center gap-2 md:gap-[40px]">
             <Button
               type="submit"
               className="w-[175px] !text-black rounded-full px-6 py-2 bg-white font-semibold border-[#006EBD] border-2 "

@@ -9,7 +9,7 @@ import qr from "@/app/_assets/images/sample_qr.png";
 import Image from "next/image";
 import icon_qr from "@/app/_assets/images/icon_qr.png";
 
-export default function ChangePasswordModal({
+export default function ProfileChangePasswordModal({
   isModalOpen,
   setIsModalOpen,
 }: {
@@ -26,7 +26,7 @@ export default function ChangePasswordModal({
           <h2
             className={`mb-5 text-[#222] text-2xl lg:text-4xl font-bold text-center ${poppins.className}`}
           >
-            Change password
+            Change Password
           </h2>
           <div className="w-full lg:w-[500px] mb-[20px] relative mx-auto">
             <input

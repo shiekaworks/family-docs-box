@@ -1,38 +1,37 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import ArrowLeft from "@/app/_assets/icons/arrow_left.svg";
-import upload from "@/app/_assets/images/upload_icon.png";
-import user_profile from "@/app/_assets/images/user_profile.png";
-import user1 from "@/app/_assets/images/user 1.png";
-import ChangePasswordModal from "../_family-change-password/page";
-import InviteMemberModal from "../_family-invite-member/page";
-import { Sidebar } from "@/app/_components/Sidebar";
-import { poppins, inter } from "@/app/_assets/fonts";
+'use client';
+import { useState } from 'react';
+import ArrowLeft from '@/app/_assets/icons/arrow_left.svg';
+import ChangeFamilyKeyModal from '../_family-change-family-key/page';
+import InviteMemberModal from '../_family-invite-member/page';
+import { Sidebar } from '@/app/_components/Sidebar';
+import { poppins } from '@/app/_assets/fonts';
 
-export default function Profile() {
+export default function Family() {
   const [isChangePwModalOpen, setIsChangePwModalOpen] = useState(false);
   const [isInviteMemberModalOpen, setIsInviteMemberModalOpen] = useState(false);
   const [isDisableFamilyName, setIsDisableFamilyName] = useState(true);
-  const [familyName, setFamilyName] = useState("Doe Family");
+  const [familyName, setFamilyName] = useState('Doe Family');
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
-      <div className="flex flex-col md:flex-row gap-5 w-full">
+    <main className="flex flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
+      <div className="flex flex-col md:flex-row gap-5 w-full min-h-screen">
         <Sidebar />
-        <div className="w-full md:w-4/5 bg-white py-4 px-4 md:py-6 md:px-6 lg:py-8 lg:px-8 rounded-3xl">
+        <div className="w-full md:w-4/5 bg-white p-6 lg:py-8 lg:px-8 rounded-3xl">
           <div className="flex gap-4 items-center mb-6">
-            <ArrowLeft />
-            <h2 className="text-lg md:text-xl lg:text-2xl font-extrabold text-[#222222]">
+            <a href="/" className="w-6">
+              <ArrowLeft />
+            </a>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-[#222222]">
               FAMILY
             </h2>
           </div>
-          <div className="p-4 md:p-6 lg:p-8">
+          <div>
             <div className="rounded-lg flex flex-col gap-8">
               <div className="w-full flex flex-col md:flex-row gap-8">
-                <div className="pt-5 lg:pt-[32px] 2xl:pl-[135px] md:pl-5">
-                  <div className="grid grid-cols-1 lg:grid-cols-[69%_31%] gap-10">
+                <div className="pt-5 lg:pt-[32px]">
+                  <div className="grid grid-cols-1 lg:grid-cols-[65%_31%] gap-10">
                     <div className="mb-5">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-5 mb-10 md:mb-0">
                         <div className="mb-3 lg:mb-10">
                           <label className="pl-4">Family name</label>
                           <input
@@ -47,7 +46,7 @@ export default function Profile() {
                           <div className="flex gap-2 pl-4">
                             {isDisableFamilyName ? (
                               <button
-                                className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-md"
+                                className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
                                 onClick={() => setIsDisableFamilyName(false)}
                               >
                                 Edit
@@ -55,16 +54,16 @@ export default function Profile() {
                             ) : (
                               <>
                                 <button
-                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-md"
+                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
                                   onClick={() => {
-                                    setFamilyName("Doe Family");
+                                    setFamilyName('Doe Family');
                                     setIsDisableFamilyName(true);
                                   }}
                                 >
                                   Cancel
                                 </button>
                                 <button
-                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-md"
+                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
                                   onClick={() => setIsDisableFamilyName(true)}
                                 >
                                   Apply
@@ -78,13 +77,13 @@ export default function Profile() {
                           <input
                             type="email"
                             placeholder="janedoe@gmail.com"
-                            className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+                            className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
                             disabled
                           />
                         </div>
                       </div>
 
-                      <div className="pl-4">
+                      <div>
                         <h3
                           className={`${poppins.className} font-bold mb-5 text-2xl`}
                         >
@@ -132,7 +131,7 @@ export default function Profile() {
                       </div>
                     </div>
                     <div className={`${poppins.className}`}>
-                      <h2 className="text-4xl font-bold mb-3">
+                      <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
                         Plan Subscription
                       </h2>
                       <div className="bg-[#006ebd] text-white rounded-3xl py-5 px-3 text-center">
@@ -142,9 +141,12 @@ export default function Profile() {
                         <p className="mb-1 text-white text-2xl lg:text-4xl font-bold">
                           JUST THE <br /> TWO OF US
                         </p>
-                        <p className="text-[#8dc2ea] text-lg">
+                        <a
+                          href="/select-plan"
+                          className="text-[#8dc2ea] text-base"
+                        >
                           Upgrade subscription
-                        </p>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -164,14 +166,14 @@ export default function Profile() {
                 className="bg-[#006EBD] text-white rounded-3xl px-6 py-3 w-full md:w-[200px]"
                 onClick={() => setIsChangePwModalOpen(true)}
               >
-                Change password
+                Change Family key
               </button>
             </div>
           </div>
         </div>
       </div>
       {isChangePwModalOpen && (
-        <ChangePasswordModal
+        <ChangeFamilyKeyModal
           isModalOpen={isChangePwModalOpen}
           setIsModalOpen={setIsChangePwModalOpen}
         />

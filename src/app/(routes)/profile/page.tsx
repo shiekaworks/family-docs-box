@@ -7,19 +7,22 @@ import user_profile from "@/app/_assets/images/user_profile.png";
 import User1 from "@/app/_assets/icons/user 1.svg";
 import Share from "../_share/page";
 import { Sidebar } from "@/app/_components/Sidebar";
+import ProfileChangePasswordModal from "../_profile-change-password/page";
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isChangePwModalOpen, setIsChangePwModalOpen] = useState(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
-      <div className="flex flex-col md:flex-row gap-5 w-full">
+    <main className="flex flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
+      <div className="flex flex-col md:flex-row gap-5 w-full min-h-screen">
         <Sidebar />
-        <div className="w-full md:w-4/5 bg-white py-4 px-4 md:py-6 md:px-6 lg:py-8 lg:px-8 rounded-3xl">
+        <div className="w-full md:w-4/5 bg-white p-6 lg:py-8 lg:px-8 rounded-3xl">
           <div className="flex gap-4 items-center mb-6">
-            <ArrowLeft />
-            <User1 />
-            <h2 className="text-lg md:text-xl lg:text-2xl font-extrabold text-[#222222]">
+            <a href="/" className="w-6">
+              <ArrowLeft />
+            </a>
+            <h2 className="text-2xl md:text-4xl font-extrabold text-[#222222]">
               PROFILE SETTINGS
             </h2>
           </div>
@@ -103,7 +106,13 @@ export default function Profile() {
               </div>
             </div>
             <div className="w-full relative text-right lg:mt-[242px] mt-6">
-              <button className="bg-[#006EBD] text-white rounded-3xl px-6 py-3 w-[200px]">
+              <button
+                className="bg-[#006EBD] text-white rounded-3xl px-6 py-3 w-full md:w-[200px] lg:mr-5 lg:mb-0 mb-5"
+                onClick={() => setIsChangePwModalOpen(true)}
+              >
+                Change Password
+              </button>
+              <button className="bg-[#006EBD] text-white rounded-3xl px-6 py-3  w-full md:w-[200px]">
                 Update
               </button>
             </div>
@@ -114,6 +123,12 @@ export default function Profile() {
         <Share
           isModalOpen={isShareModalOpen}
           setIsModalOpen={setIsShareModalOpen}
+        />
+      )}
+      {isChangePwModalOpen && (
+        <ProfileChangePasswordModal
+          isModalOpen={isChangePwModalOpen}
+          setIsModalOpen={setIsChangePwModalOpen}
         />
       )}
     </main>

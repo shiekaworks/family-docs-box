@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { poppins } from "@/app/_assets/fonts";
-import { Button } from "@/app/_components/Button";
-import { Header } from "@/app/_components/Header";
-import { Modal } from "@/app/_components/Modal";
-import qr from "@/app/_assets/images/sample_qr.png";
-import Image from "next/image";
-import IconQR from "@/app/_assets/icons/qr.svg";
+import { poppins } from '@/app/_assets/fonts';
+import { Button } from '@/app/_components/Button';
+import { Header } from '@/app/_components/Header';
+import { Modal } from '@/app/_components/Modal';
+import qr from '@/app/_assets/images/sample_qr.png';
+import Image from 'next/image';
+import IconQR from '@/app/_assets/icons/qr.svg';
 
 export default function Share({
   isModalOpen,
@@ -33,11 +33,7 @@ export default function Share({
             >
               Scan QR below to share the file
             </p>
-            <Image
-              src={qr}
-              alt="Landscape picture"
-              className="mb-[40px] mx-auto"
-            />
+            <Image src={qr} alt="" className="mb-[40px] mx-auto" />
             <Button
               type="submit"
               className="w-[175px] px-12"

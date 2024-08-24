@@ -1,23 +1,23 @@
-import React from "react";
-import Image from "next/image";
-import { poppins } from "@/app/_assets/fonts";
+import React from 'react';
+import Image from 'next/image';
+import { poppins } from '@/app/_assets/fonts';
+import Logo from '@/app/_assets/images/famdocsbox-logo.png';
 
 export const Footer = (): React.JSX.Element => {
   return (
     <div
-      className={`w-full bg-[#252728] text-white text-md ${poppins.className}`}
+      className={`w-full bg-[#252728] text-white text-base ${poppins.className}`}
     >
-      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-14 w-full max-w-[1750px] mx-auto px-4 md:px-10 py-4 md:py-2.5">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-14 w-full max-w-[1750px] mx-auto px-4 md:px-10 py-4 md:py-5">
         <Image
-          src="https://dummyimage.com/70x70/000/ffffff"
-          alt="Landscape picture"
-          width={70}
-          height={70}
+          src={Logo}
+          alt="Logo"
+          height={40}
           className="rounded-full mx-auto lg:mx-0"
         />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <ul className="flex flex-col md:flex-row md:gap-6">
+          <ul className="flex flex-col text-center md:flex-row md:gap-6 md:text-left">
             <li className="mb-2 md:mb-0">
               <a href="#" className="hover:underline">
                 About Us
@@ -35,7 +35,7 @@ export const Footer = (): React.JSX.Element => {
             </li>
           </ul>
 
-          <p className="text-center md:text-right text-xs md:text-md mt-2 md:mt-0">
+          <p className="text-center md:text-right text-xs md:text-base mt-2 md:mt-0">
             © 2024 CentralScottLLC. All rights reserved.
           </p>
         </div>

@@ -20,16 +20,16 @@ export default function Payment({
   return (
     <>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
-        <div className="mx-auto p-7 lg:p-20 bg-white rounded-3xl shadow-2xl z-10 xs:p-10  xs:m-[20px] xs:w-full xs:max-h-[600px] overflow-y-auto">
+        <div className="mx-auto px-6 py-10 bg-white rounded-3xl shadow-2xl z-10 xs:m-[20px] xs:w-full xs:max-h-[600px] overflow-y-auto">
           <div className="flex flex-col md:flex-row justify-center md:gap-[40px] lg:gap-4 gap-7 mb-10">
             <div className="mx-auto">
               <h2
-                className={`text-[#222] text-2xl lg:text-4xl mb-2 font-bold ${poppins.className}`}
+                className={`mb-1 text-[#222] text-3xl lg:text-4xl font-bold ${poppins.className}`}
               >
                 Payment details
               </h2>
               <p
-                className={`text-[#7B7B7B] text-md font-light mb-10 ${poppins.className}`}
+                className={`text-[#7B7B7B] text-base md:text-lg font-light mb-10 ${poppins.className}`}
               >
                 Test Credit Card: 4242424242424242, EXP: 12/25, CVV: 123,
                 Zipcode: 02154
@@ -42,7 +42,7 @@ export default function Payment({
                     name="card number"
                     type="text"
                     placeholder="Card Number"
-                    className="text-[14px] px-4 py-3 w-full mb-[20px] border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+                    className="text-[14px] px-4 py-3 w-full mb-[20px] border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
                   />
                   <div className="absolute top-[13px] right-4 flex items-center">
                     <Image
@@ -53,20 +53,20 @@ export default function Payment({
                   </div>
                 </div>
 
-                <div className="flex gap-[34px] mb-[20px]">
+                <div className="flex gap-5 md:gap-[34px] mb-[20px]">
                   <input
                     id="MM/YY"
                     name="MM/YY"
                     type="text"
                     placeholder="MM/YY"
-                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
                   />
                   <input
                     id="CVC"
                     name="CVC"
                     type="text"
                     placeholder="CVC"
-                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+                    className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
                   />
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function Payment({
                 name="Country"
                 type="text"
                 placeholder="Country"
-                className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-md"
+                className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
               />
             </div>
             <div
@@ -89,7 +89,7 @@ export default function Payment({
                 <span className="font-normal"> Month</span>
               </p>
               <ul
-                className={`text-md text-gray-600 mb-[19px] list-disc text-left pl-5 ${poppins.className}`}
+                className={`text-base text-gray-600 mb-[19px] list-disc text-left pl-5 ${poppins.className}`}
               >
                 <li>2 Users</li>
                 <li>10 Documents up to 5MB in size</li>
@@ -99,7 +99,7 @@ export default function Payment({
             </div>
           </div>
 
-          <div className="flex justify-center gap-[40px]">
+          <div className="flex justify-center gap-5 md:gap-[40px]">
             <Button
               type="submit"
               className="w-[175px] !text-black rounded-full px-6 py-2 bg-white font-semibold border-[#006EBD] border-2 "

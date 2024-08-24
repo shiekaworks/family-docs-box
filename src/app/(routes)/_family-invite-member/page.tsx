@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { poppins } from "@/app/_assets/fonts";
-import { Button } from "@/app/_components/Button";
-import { Modal } from "@/app/_components/Modal";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { poppins } from '@/app/_assets/fonts';
+import { Button } from '@/app/_components/Button';
+import { Modal } from '@/app/_components/Modal';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { loginSchema } from "@/app/_models/login";
+import { loginSchema } from '@/app/_models/login';
 
 interface FormData {
   email: string;
@@ -40,12 +40,12 @@ export default function InviteMemberModal({
               id="email1"
               type="email"
               placeholder="Email address"
-              className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
+              className="w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
               required
-              {...register("email")}
+              {...register('email')}
             />
             {errors.email && (
-              <p className="text-red-600 text-md mt-2">
+              <p className="text-red-600 text-base mt-2">
                 {errors.email.message}
               </p>
             )}

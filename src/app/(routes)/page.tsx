@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Docs from '@/app/_assets/icons/Documents 1.svg';
-import ArrowLeft from '@/app/_assets/icons/arrow_left.svg';
+import RemoveIcon from '@/app/_assets/icons/x.svg';
 import Edit from '@/app/_assets/icons/action_1.svg';
 import Update from '@/app/_assets/icons/action_2.svg';
 import Delete from '@/app/_assets/icons/action_3.svg';
@@ -11,11 +11,16 @@ import { Dropdown } from '@/app/_components/Dropdown';
 import Share from './_share/page';
 import { Select, SelectItem } from '@nextui-org/select';
 import { Sidebar } from '../_components/Sidebar';
-import Image from 'next/image';
+import ViewNoteModal from './_home-view-note/page';
+import DeleteConfirmationModal from './_home-delete-confirmation/page';
+import EditModal from './_home-edit/page';
 
-export default function Profile() {
+export default function Home() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [showFamilyKey, setShowFamilyKey] = useState(false);
+  const [isViewNoteModalOpen, setIsViewNoteModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(['25']);
 
   const handleSelectionChange = (keys: string) => {
@@ -23,14 +28,12 @@ export default function Profile() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
-      <div className="flex flex-col md:flex-row gap-5 w-full">
+    <main className="flex flex-col items-center justify-between p-4 lg:p-2.5 bg-custom-gradient">
+      <div className="flex flex-col md:flex-row gap-5 w-full min-h-screen">
         <Sidebar />
-        <div className="w-full md:w-4/5 bg-white py-4 px-4 md:py-6 md:px-6 lg:py-8 lg:px-8 rounded-3xl">
+        <div className="w-full md:w-4/5 bg-white p-6 lg:py-8 lg:px-8 rounded-3xl">
           <div className="flex gap-4 items-center mb-6">
-            <ArrowLeft />
-            <Docs />
-            <h2 className="text-lg md:text-xl lg:text-2xl font-extrabold text-[#222222]">
+            <h2 className="text-2xl md:text-4xl font-extrabold text-[#222222]">
               HOME
             </h2>
           </div>
@@ -56,7 +59,7 @@ export default function Profile() {
                       or drag and drop.
                     </div>
                   </div>
-                  <p className="text-md mt-2">
+                  <p className="text-base mt-2">
                     Filename.png <span className="text-[#C7C7C7]">(60KB)</span>
                   </p>
                 </div>
@@ -72,16 +75,7 @@ export default function Profile() {
                             className="w-full border border-gray-300 rounded-3xl px-4 py-3 focus:outline-none focus:border-[#006EBD] focus:border-2"
                           />
                           <div className="absolute inset-y-0 right-0 pr-4 flex items-center cursor-pointer">
-                            <Image
-                              alt="reset"
-                              loading="lazy"
-                              width="12"
-                              height="16"
-                              decoding="async"
-                              src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fx.91c45dff.png&amp;w=32&amp;q=75"
-                              className="mr-2"
-                              style={{ color: 'transparent' }}
-                            />
+                            <RemoveIcon className="mr-2" />
                             <svg
                               id="eyeIcon"
                               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +125,7 @@ export default function Profile() {
               </div>
               {/* Table Section */}
               <div className="mt-2">
-                <div className="mb-2 flex flex-col md:flex-row justify-between items-center gap-2">
+                <div className="mb-2 flex justify-between items-center gap-2">
                   <div className="w-full md:w-1/4">
                     <Select
                       aria-label="Pagination"
@@ -160,17 +154,33 @@ export default function Profile() {
                   </div>
                 </div>
                 <div className="overflow-x-auto rounded-lg">
-                  <table className="min-w-full bg-white shadow-md">
+                  <table className=" bg-white shadow-md min-w-[995px] table-fixed">
                     <thead>
                       <tr className="bg-[#006EBD] text-white">
-                        <th className="py-3 px-3 text-left">File Name</th>
-                        <th className="py-3 px-3 text-right">Last Updated</th>
-                        <th className="py-3 px-3 text-right">Key Date</th>
-                        <th className="py-3 px-2 text-center">Uploaded By</th>
-                        <th className="py-3 px-3 text-center">Tags</th>
-                        <th className="py-3 px-3 text-center">Notes</th>
-                        <th className="py-3 px-3 text-center">Modify</th>
-                        <th className="py-3 px-3 text-center">Actions</th>
+                        <th className="py-3 px-3 text-left w-[130px]">
+                          File Name
+                        </th>
+                        <th className="py-3 px-3 text-right  w-[162px]">
+                          Last Updated
+                        </th>
+                        <th className="py-3 px-3 text-right  w-[126px]">
+                          Key Date
+                        </th>
+                        <th className="py-3 px-2 text-center  w-[109px]">
+                          Uploaded By
+                        </th>
+                        <th className="py-3 px-3 text-center  w-[147px]">
+                          Tags
+                        </th>
+                        <th className="py-3 px-3 text-center  w-[145px]">
+                          Notes
+                        </th>
+                        <th className="py-3 px-3 text-center  w-[96px]">
+                          Modify
+                        </th>
+                        <th className="py-3 px-3 text-center  w-[78px]">
+                          Actions
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -185,21 +195,31 @@ export default function Profile() {
                           tag1, tag2, tag3
                         </td>
                         <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto">
+                          <button
+                            onClick={() =>
+                              setIsViewNoteModalOpen(!isViewNoteModalOpen)
+                            }
+                            className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto"
+                          >
                             Show Notes
                           </button>
                         </td>
 
                         <td className="py-3 px-4">
-                          <div className="flex flex-col sm:flex-row gap-3 items-center">
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Edit className="cursor-pointer" />
-                            </div>
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Update className="cursor-pointer" />
+                          <div className="flex gap-3 items-center justify-center">
+                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0">
+                              <Edit
+                                className="cursor-pointer"
+                                onClick={() =>
+                                  setIsEditModalOpen(!isEditModalOpen)
+                                }
+                              />
                             </div>
                             <div className="flex items-center">
-                              <Delete className="cursor-pointer" />
+                              <Delete
+                                className="cursor-pointer"
+                                onClick={() => setIsDeleteModalOpen(true)}
+                              />
                             </div>
                           </div>
                         </td>
@@ -208,19 +228,19 @@ export default function Profile() {
                           <Dropdown>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                             >
                               View
                             </a>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                             >
                               Download
                             </a>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                               onClick={() => setIsShareModalOpen(true)}
                             >
                               Share
@@ -239,21 +259,31 @@ export default function Profile() {
                           tag1, tag2, tag3
                         </td>
                         <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto">
+                          <button
+                            onClick={() =>
+                              setIsViewNoteModalOpen(!isViewNoteModalOpen)
+                            }
+                            className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto"
+                          >
                             Show Notes
                           </button>
                         </td>
 
                         <td className="py-3 px-4">
-                          <div className="flex flex-col sm:flex-row gap-3 items-center">
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Edit className="cursor-pointer" />
-                            </div>
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0 mb-2">
-                              <Update className="cursor-pointer" />
+                          <div className="flex gap-3 items-center justify-center">
+                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0">
+                              <Edit
+                                className="cursor-pointer"
+                                onClick={() =>
+                                  setIsEditModalOpen(!isEditModalOpen)
+                                }
+                              />
                             </div>
                             <div className="flex items-center">
-                              <Delete className="cursor-pointer" />
+                              <Delete
+                                className="cursor-pointer"
+                                onClick={() => setIsDeleteModalOpen(true)}
+                              />
                             </div>
                           </div>
                         </td>
@@ -262,19 +292,19 @@ export default function Profile() {
                           <Dropdown>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                             >
                               View
                             </a>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                             >
                               Download
                             </a>
                             <a
                               href="#"
-                              className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                               onClick={() => setIsShareModalOpen(true)}
                             >
                               Share
@@ -307,6 +337,24 @@ export default function Profile() {
         <Share
           isModalOpen={isShareModalOpen}
           setIsModalOpen={setIsShareModalOpen}
+        />
+      )}
+      {isViewNoteModalOpen && (
+        <ViewNoteModal
+          isModalOpen={isViewNoteModalOpen}
+          setIsModalOpen={setIsViewNoteModalOpen}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteConfirmationModal
+          isModalOpen={isDeleteModalOpen}
+          setIsModalOpen={setIsDeleteModalOpen}
+        />
+      )}
+      {isEditModalOpen && (
+        <EditModal
+          isModalOpen={isEditModalOpen}
+          setIsModalOpen={setIsEditModalOpen}
         />
       )}
     </main>
