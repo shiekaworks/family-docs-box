@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import { poppins } from '@/app/_assets/fonts';
-import Logo from '@/app/_assets/images/famdocsbox-logo.png';
+import React from "react";
+import Image from "next/image";
+import { poppins } from "@/app/_assets/fonts";
+import Logo from "@/app/_assets/images/famdocsbox-logo.png";
 
 export const Footer = (): React.JSX.Element => {
   return (
@@ -9,12 +9,9 @@ export const Footer = (): React.JSX.Element => {
       className={`w-full bg-[#252728] text-white text-base ${poppins.className}`}
     >
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 md:gap-14 w-full max-w-[1750px] mx-auto px-4 md:px-10 py-4 md:py-5">
-        <Image
-          src={Logo}
-          alt="Logo"
-          height={40}
-          className="rounded-full mx-auto lg:mx-0"
-        />
+        <a href="/" className="mx-auto">
+          <Image src={Logo} alt="Logo" height={40} />
+        </a>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <ul className="flex flex-col text-center md:flex-row md:gap-6 md:text-left">
@@ -28,9 +25,14 @@ export const Footer = (): React.JSX.Element => {
                 Contact Us
               </a>
             </li>
-            <li className="mb-2 md:mb-0">
+            <li className="mb-2 md:mb-0 border-t md:border-t-0 md:border-r md:border-white border-solid border-white pt-2 md:pt-0 md:pr-6">
               <a href="#" className="hover:underline">
                 Privacy Policy
+              </a>
+            </li>
+            <li className="mb-2 md:mb-0">
+              <a href="#" className="hover:underline">
+                FAQ
               </a>
             </li>
           </ul>

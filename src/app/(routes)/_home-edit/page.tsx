@@ -1,9 +1,11 @@
-'use client';
-import { useState } from 'react';
-import { poppins } from '@/app/_assets/fonts';
-import { Button } from '@/app/_components/Button';
-import { Modal } from '@/app/_components/Modal';
-import { Select, SelectItem } from '@nextui-org/select';
+"use client";
+import { useState } from "react";
+import { poppins } from "@/app/_assets/fonts";
+import { Button } from "@/app/_components/Button";
+import { Modal } from "@/app/_components/Modal";
+import { Select, SelectItem } from "@nextui-org/select";
+import { MultipleSelect } from "../../_components/MuiltiSelect";
+
 export default function EditModal({
   isModalOpen,
   setIsModalOpen,
@@ -11,19 +13,22 @@ export default function EditModal({
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: boolean) => void;
 }) {
-  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(['Scott']);
-  const [selectedTags, setSelectedTags] = useState<Set<string>>(
-    new Set(['tag1', 'tag2', 'tag3'])
-  );
+  const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(["Scott"]);
+
+  const [selected, setSelected] = useState([
+    { value: "tag1", label: "Tag 1" },
+    { value: "tag2", label: "Tag 2" },
+    { value: "tag3", label: "Tag 3" },
+  ]);
+
+  const handleSelectChange = (values: any) => {
+    setSelected(values);
+  };
+
   const handleSelectionChange = (keys: string) => {
     setSelectedItemsPerPage([keys]);
   };
 
-  const handleTagsChange = (keys: 'all' | Set<React.Key>) => {
-    if (keys !== 'all' && keys instanceof Set) {
-      setSelectedTags(keys as Set<string>);
-    }
-  };
   return (
     <>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
@@ -50,6 +55,7 @@ export default function EditModal({
                 className="max-w-xs bg-white"
                 selectedKeys={selectedItemsPerPage}
                 onChange={(keys) => handleSelectionChange(keys.target.value)}
+                isDisabled
               >
                 <SelectItem key="Scott">Scott</SelectItem>
                 <SelectItem key="Michael">Michael</SelectItem>
@@ -60,19 +66,17 @@ export default function EditModal({
 
           <div className="mb-6">
             <label className="pl-4">Tags</label>
-            <div className="w-full relative h-[44px] bg-white mt-1">
-              <Select
-                aria-label="Select tag"
-                placeholder="Select tag"
-                selectionMode="multiple"
-                className="w-full"
-                selectedKeys={selectedTags}
-                onChange={(keys: any) => handleTagsChange(keys.target.value)}
-              >
-                <SelectItem key="tag1">Tag 1</SelectItem>
-                <SelectItem key="tag2">Tag 2</SelectItem>
-                <SelectItem key="tag3">Tag 3</SelectItem>
-              </Select>
+            <div className="w-full relative mt-1">
+              <MultipleSelect
+                value={selected}
+                options={[
+                  { value: "tag1", label: "Tag 1" },
+                  { value: "tag2", label: "Tag 2" },
+                  { value: "tag3", label: "Tag 3" },
+                ]}
+                isMulti
+                onChange={handleSelectChange}
+              />
             </div>
           </div>
 

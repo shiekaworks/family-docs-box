@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { poppins } from "@/app/_assets/fonts";
-import { Button } from "@/app/_components/Button";
-import { Modal } from "@/app/_components/Modal";
+import { useState } from 'react';
+import { poppins } from '@/app/_assets/fonts';
+import { Button } from '@/app/_components/Button';
+import { Modal } from '@/app/_components/Modal';
 
 export default function ChangeFamilyKeyModal({
   isModalOpen,
@@ -22,12 +22,12 @@ export default function ChangeFamilyKeyModal({
           <h2
             className={`mb-5 text-[#222] text-2xl lg:text-4xl font-bold text-center ${poppins.className}`}
           >
-            Change password
+            Change family key
           </h2>
           <div className="w-full lg:w-[500px] mb-[20px] relative mx-auto">
             <input
               id="password"
-              type={showOldFamilyKey ? "text" : "password"}
+              type={showOldFamilyKey ? 'text' : 'password'}
               placeholder="Old family key"
               className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
             />
@@ -52,7 +52,7 @@ export default function ChangeFamilyKeyModal({
           <div className="w-full lg:w-[500px] mb-[20px] relative mx-auto">
             <input
               id="password"
-              type={showFamilyKey ? "text" : "password"}
+              type={showFamilyKey ? 'text' : 'password'}
               placeholder="New family key"
               className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
             />
@@ -78,7 +78,7 @@ export default function ChangeFamilyKeyModal({
             <input
               id="password"
               name="password"
-              type={showConfirmFamilyKey ? "text" : "password"}
+              type={showConfirmFamilyKey ? 'text' : 'password'}
               placeholder="Confirm new family key"
               className="w-full px-4 py-3 border border-[#E2E2E2] focus:outline-none focus:border-[#006EBD] focus:border-2 rounded-full text-base"
             />

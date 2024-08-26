@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ArrowLeft from '@/app/_assets/icons/arrow_left.svg';
-import ChangeFamilyKeyModal from '../_family-change-family-key/page';
+import ChangeFamilyKeyModal from '../_change-family-key/page';
 import InviteMemberModal from '../_family-invite-member/page';
 import { Sidebar } from '@/app/_components/Sidebar';
 import { poppins } from '@/app/_assets/fonts';
@@ -28,132 +28,138 @@ export default function Family() {
           <div>
             <div className="rounded-lg flex flex-col gap-8">
               <div className="w-full flex flex-col md:flex-row gap-8">
-                <div className="pt-5 lg:pt-[32px]">
-                  <div className="grid grid-cols-1 lg:grid-cols-[65%_31%] gap-10">
-                    <div className="mb-5">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-5 mb-10 md:mb-0">
-                        <div className="mb-3 lg:mb-10">
-                          <label className="pl-4">Family name</label>
-                          <input
-                            type="text"
-                            placeholder="Enter family name"
-                            className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2 mb-2"
-                            value={familyName}
-                            disabled={isDisableFamilyName}
-                            onChange={(e) => setFamilyName(e.target.value)}
-                          />
+                <div className="w-full flex flex-col md:flex-row gap-8 pt-5 lg:pt-[32px]">
+                  <div className="mb-5 w-full md:w-[75%]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-5 gap-3 mb-5 md:mb-3">
+                      <div>
+                        <label className="pl-4">Family name</label>
+                        <input
+                          type="text"
+                          placeholder="Enter family name"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2 mb-2"
+                          value={familyName}
+                          disabled={isDisableFamilyName}
+                          onChange={(e) => setFamilyName(e.target.value)}
+                        />
 
-                          <div className="flex gap-2 pl-4">
-                            {isDisableFamilyName ? (
+                        <div className="flex gap-2 pl-4">
+                          {isDisableFamilyName ? (
+                            <button
+                              className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
+                              onClick={() => setIsDisableFamilyName(false)}
+                            >
+                              Edit
+                            </button>
+                          ) : (
+                            <>
                               <button
                                 className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
-                                onClick={() => setIsDisableFamilyName(false)}
+                                onClick={() => {
+                                  setFamilyName('Doe Family');
+                                  setIsDisableFamilyName(true);
+                                }}
                               >
-                                Edit
+                                Cancel
                               </button>
-                            ) : (
-                              <>
-                                <button
-                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
-                                  onClick={() => {
-                                    setFamilyName('Doe Family');
-                                    setIsDisableFamilyName(true);
-                                  }}
-                                >
-                                  Cancel
-                                </button>
-                                <button
-                                  className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
-                                  onClick={() => setIsDisableFamilyName(true)}
-                                >
-                                  Apply
-                                </button>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="mb-5 lg:mb-0">
-                          <label className="pl-4">Head of the household</label>
-                          <input
-                            type="email"
-                            placeholder="janedoe@gmail.com"
-                            className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
-                            disabled
-                          />
+                              <button
+                                className="text-[#006EBD] dark:text-blue-500 focus:underline text-right cursor-pointer text-base"
+                                onClick={() => setIsDisableFamilyName(true)}
+                              >
+                                Apply
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
-
                       <div>
-                        <h3
-                          className={`${poppins.className} font-bold mb-5 text-2xl`}
-                        >
-                          Family Members
-                        </h3>
-                        <div className="space-y-4">
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member1@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member2@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member3@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member4@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
+                        <label className="pl-4">Family Key</label>
+                        <input
+                          type="text"
+                          placeholder="samplekey"
+                          className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div className="mb-10 lg:mb-10">
+                      <label className="pl-4">Head of household</label>
+                      <input
+                        type="email"
+                        placeholder="janedoe@gmail.com"
+                        className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-base focus:outline-none focus:border-[#006EBD] focus:border-2"
+                        disabled
+                      />
+                    </div>
+                    <div>
+                      <h3
+                        className={`${poppins.className} font-bold mb-5 text-2xl`}
+                      >
+                        Family Members
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member1@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member2@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member3@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member4@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
+                        </div>
 
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member5@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
-                          <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
-                            <span>member6@example.com</span>
-                            <button className="text-[#006EBD] dark:text-blue-500">
-                              Remove
-                            </button>
-                          </div>
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member5@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
+                        </div>
+                        <div className="flex justify-between items-center p-4 bg-[#e3eff8] rounded-md">
+                          <span>member6@example.com</span>
+                          <button className="text-[#006EBD] dark:text-blue-500">
+                            Remove
+                          </button>
                         </div>
                       </div>
                     </div>
-                    <div className={`${poppins.className}`}>
-                      <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
-                        Plan Subscription
-                      </h2>
-                      <div className="bg-[#006ebd] text-white rounded-3xl py-5 px-3 text-center">
-                        <p className="text-white text-xl mb-3">
-                          You are subscribed to
-                        </p>
-                        <p className="mb-1 text-white text-2xl lg:text-4xl font-bold">
-                          JUST THE <br /> TWO OF US
-                        </p>
-                        <a
-                          href="/select-plan"
-                          className="text-[#8dc2ea] text-base"
-                        >
-                          Upgrade subscription
-                        </a>
-                      </div>
+                  </div>
+                  <div className={`${poppins.className} w-full md:w-[35%]`}>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-3 text-center">
+                      Plan Subscription
+                    </h2>
+                    <div className="bg-[#006ebd] text-white rounded-3xl py-5 px-3 text-center">
+                      <p className="text-white text-xl mb-3">
+                        You are subscribed to
+                      </p>
+                      <p className="mb-1 text-white text-2xl lg:text-4xl font-bold">
+                        JUST THE <br /> TWO OF US
+                      </p>
+                      <a
+                        href="/select-plan"
+                        className="text-[#8dc2ea] text-base"
+                      >
+                        Upgrade subscription
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="w-full relative text-right lg:mt-[242px] mt-6">
+            <div className="w-full relative text-right lg:mt-10 mt-6">
               <button
                 className="bg-[#5AAE72] text-white rounded-3xl px-6 py-3 w-full md:w-[200px] lg:mr-5 lg:mb-0 mb-5"
                 onClick={() =>

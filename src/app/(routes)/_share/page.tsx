@@ -20,7 +20,7 @@ export default function Share({
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
         <div className="lg:w-[30vw] w-full mx-auto p-10 bg-white rounded-3xl shadow-2xl z-10 text-center  xs:m-[20px] xs:w-full xs:max-h-[700px] overflow-y-auto">
           <div className="mx-auto">
-            <div className="bg-[#006EBD] p-[20px] pt-[17px] rounded-full w-[80px] h-[80px] mx-auto mb-[30px]">
+            <div className="bg-[#006EBD] p-[20px] rounded-full w-[80px] h-[80px] mx-auto mb-[30px]">
               <IconQR />
             </div>
             <h2

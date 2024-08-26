@@ -1,19 +1,38 @@
 'use client';
-import { useState } from 'react';
-import Docs from '@/app/_assets/icons/Documents 1.svg';
+
+import { useState, useMemo, useCallback } from 'react';
 import RemoveIcon from '@/app/_assets/icons/x.svg';
+import Camera from '@/app/_assets/icons/camera.svg';
 import Edit from '@/app/_assets/icons/action_1.svg';
-import Update from '@/app/_assets/icons/action_2.svg';
 import Delete from '@/app/_assets/icons/action_3.svg';
 import Upload from '@/app/_assets/icons/upload.svg';
 import Search from '@/app/_assets/icons/search.svg';
-import { Dropdown } from '@/app/_components/Dropdown';
+import { Dropdown as DropdownAction } from '@/app/_components/Dropdown';
 import Share from './_share/page';
 import { Select, SelectItem } from '@nextui-org/select';
 import { Sidebar } from '../_components/Sidebar';
 import ViewNoteModal from './_home-view-note/page';
 import DeleteConfirmationModal from './_home-delete-confirmation/page';
 import EditModal from './_home-edit/page';
+import ViewHintModal from './_home-hint/page';
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@nextui-org/table';
+import { Button } from '@nextui-org/button';
+import { Pagination } from '@nextui-org/pagination';
+import { columns, files } from './data';
+import { MultipleSelect } from '../_components/MuiltiSelect';
+
+type SortDescriptor = {
+  column: React.Key;
+  direction: 'ascending' | 'descending';
+};
+type Selection = 'all' | Set<React.Key>;
 
 export default function Home() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -21,10 +40,242 @@ export default function Home() {
   const [isViewNoteModalOpen, setIsViewNoteModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isViewHintModalOpen, setIsViewHintModalOpen] = useState(false);
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState(['25']);
 
   const handleSelectionChange = (keys: string) => {
     setSelectedItemsPerPage([keys]);
+  };
+
+  const INITIAL_VISIBLE_COLUMNS = [
+    'filename',
+    'last_updated',
+    'key_date',
+    'uploaded_by',
+    'tags',
+    'notes',
+    'modify',
+    'actions',
+  ];
+
+  const [filterValue, setFilterValue] = useState('');
+  const [selectedKeys, setSelectedKeys] = useState<any>(new Set([]));
+  const [visibleColumns, setVisibleColumns] = useState<Selection>(
+    new Set(INITIAL_VISIBLE_COLUMNS)
+  );
+  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [sortDescriptor, setSortDescriptor] = useState<any>({
+    column: '',
+    direction: '',
+  });
+  const [page, setPage] = useState(1);
+
+  const hasSearchFilter = Boolean(filterValue);
+
+  const headerColumns = useMemo(() => {
+    if (visibleColumns === 'all') return columns;
+
+    return columns.filter((column) =>
+      Array.from(visibleColumns).includes(column.uid)
+    );
+  }, [visibleColumns]);
+
+  const filteredItems = useMemo(() => {
+    let filteredUsers = [...files];
+
+    if (hasSearchFilter) {
+      filteredUsers = filteredUsers.filter((user) =>
+        user.filename.toLowerCase().includes(filterValue.toLowerCase())
+      );
+    }
+
+    return filteredUsers;
+  }, [files, filterValue]);
+
+  const pages = Math.ceil(filteredItems.length / rowsPerPage);
+
+  const items = useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    return filteredItems.slice(start, end);
+  }, [page, filteredItems, rowsPerPage]);
+
+  const sortedItems = useMemo(() => {
+    return [...items].sort((a: any, b: any) => {
+      const first = a[sortDescriptor.column];
+      const second = b[sortDescriptor.column];
+      const cmp = first < second ? -1 : first > second ? 1 : 0;
+
+      return sortDescriptor.direction === 'descending' ? -cmp : cmp;
+    });
+  }, [sortDescriptor, items]);
+
+  const renderCell = useCallback((user: any, columnKey: any) => {
+    const cellValue = user[columnKey];
+
+    switch (columnKey) {
+      case 'notes':
+        return (
+          <div className="flex sm:justify-start justify-center items-center">
+            <button
+              onClick={() => setIsViewNoteModalOpen(!isViewNoteModalOpen)}
+              className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto"
+            >
+              Show Notes
+            </button>
+          </div>
+        );
+      case 'modify':
+        return (
+          <div className="flex gap-3 items-center justify-center">
+            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0">
+              <Edit
+                className="cursor-pointer"
+                onClick={() => setIsEditModalOpen(!isEditModalOpen)}
+              />
+            </div>
+            <div className="flex items-center">
+              <Delete
+                className="cursor-pointer"
+                onClick={() => setIsDeleteModalOpen(true)}
+              />
+            </div>
+          </div>
+        );
+      case 'actions':
+        return (
+          <DropdownAction>
+            <a
+              href="/view-file"
+              target="_blank"
+              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
+            >
+              View
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
+            >
+              Download
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
+              onClick={() => setIsShareModalOpen(true)}
+            >
+              Share
+            </a>
+          </DropdownAction>
+        );
+      default:
+        return cellValue;
+    }
+  }, []);
+
+  const onNextPage = useCallback(() => {
+    if (page < pages) {
+      setPage(page + 1);
+    }
+  }, [page, pages]);
+
+  const onPreviousPage = useCallback(() => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  }, [page]);
+
+  const onRowsPerPageChange = useCallback((e: any) => {
+    setRowsPerPage(Number(e.target.value));
+    setPage(1);
+    handleSelectionChange(e.target.value);
+  }, []);
+
+  const onSearchChange = useCallback((value: string) => {
+    if (value) {
+      setFilterValue(value);
+      setPage(1);
+    } else {
+      setFilterValue('');
+    }
+  }, []);
+
+  const topContent = useMemo(() => {
+    return (
+      <div className="flex justify-between items-center gap-2">
+        <div className="w-full md:w-1/4">
+          <Select
+            aria-label="Items per page"
+            className="max-w-xs bg-white"
+            selectedKeys={selectedItemsPerPage}
+            onChange={(keys) => onRowsPerPageChange(keys)}
+          >
+            <SelectItem key="25">25 items per page</SelectItem>
+            <SelectItem key="50">50 items per page</SelectItem>
+            <SelectItem key="100">100 items per page</SelectItem>
+          </Select>
+        </div>
+        <div className="w-full md:w-1/3 text-right">
+          <div className="relative w-full sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-[400px] 2xl:float-right">
+            <input
+              type="text"
+              placeholder="Search Files"
+              className="border border-gray-300 rounded-3xl mx-auto p-3 pl-10 w-full focus:outline-none focus:border-[#006EBD] focus:border-2"
+              onChange={(e) => onSearchChange(e.target.value)}
+              value={filterValue}
+            />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer">
+              <Search className="rounded-full mx-auto" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }, [
+    filterValue,
+    visibleColumns,
+    onRowsPerPageChange,
+    files.length,
+    onSearchChange,
+    hasSearchFilter,
+    selectedItemsPerPage,
+  ]);
+
+  const bottomContent = useMemo(() => {
+    return (
+      <div className="flex justify-end items-center">
+        <button
+          className="h-8 p-1 rounded-lg mr-2"
+          disabled={pages === 1}
+          onClick={onPreviousPage}
+        >
+          Prev
+        </button>
+        <Pagination
+          isCompact
+          color="primary"
+          page={page}
+          total={pages}
+          onChange={setPage}
+          classNames={{
+            cursor: 'bg-[#006EBD] text-white h-8 w-8 p-1 rounded-lg',
+          }}
+        />
+        <button
+          className="h-8 p-1 rounded-lg mr-2"
+          disabled={pages === 1}
+          onClick={onNextPage}
+        >
+          Next
+        </button>
+      </div>
+    );
+  }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+
+  const [selected, setSelected] = useState([]);
+
+  const handleSelectChange = (values: any) => {
+    setSelected(values);
   };
 
   return (
@@ -46,7 +297,8 @@ export default function Home() {
                     <div className="text-center">
                       <input type="file" className="hidden" id="file-upload" />
                       <div className="bg-[#D9D9D9] rounded-full w-12 h-12 mx-auto mb-5 py-2.5">
-                        <Upload className="mx-auto" />
+                        <Upload className="mx-auto hidden md:block" />
+                        <Camera className="mx-auto block md:hidden" />
                       </div>
                       <label
                         htmlFor="file-upload"
@@ -93,21 +345,26 @@ export default function Home() {
                             </svg>
                           </div>
                         </div>
-                        <p className="text-[#006EBD] dark:text-blue-500 underline text-right cursor-pointer pr-4">
-                          Get family key here
+                        <p
+                          className="text-[#006EBD] dark:text-blue-500 underline text-right cursor-pointer pr-4"
+                          onClick={() =>
+                            setIsViewHintModalOpen(!isViewHintModalOpen)
+                          }
+                        >
+                          Hint
                         </p>
                       </div>
-                      <div className="w-full relative h-[44px] bg-white">
-                        <Select
-                          aria-label="Select tag"
-                          placeholder="Select tag"
-                          selectionMode="multiple"
-                          className="w-full"
-                        >
-                          <SelectItem key={1}>Tag 1</SelectItem>
-                          <SelectItem key={2}>Tag 2</SelectItem>
-                          <SelectItem key={3}>Tag 3</SelectItem>
-                        </Select>
+                      <div className="w-full relative">
+                        <MultipleSelect
+                          value={selected}
+                          options={[
+                            { value: 'tag1', label: 'Tag 1' },
+                            { value: 'tag2', label: 'Tag 2' },
+                            { value: 'tag3', label: 'Tag 3' },
+                          ]}
+                          isMulti
+                          onChange={handleSelectChange}
+                        />
                       </div>
                     </div>
 
@@ -124,211 +381,55 @@ export default function Home() {
                 </button>
               </div>
               {/* Table Section */}
-              <div className="mt-2">
-                <div className="mb-2 flex justify-between items-center gap-2">
-                  <div className="w-full md:w-1/4">
-                    <Select
-                      aria-label="Pagination"
-                      className="max-w-xs bg-white"
-                      selectedKeys={selectedItemsPerPage}
-                      onChange={(keys) =>
-                        handleSelectionChange(keys.target.value)
+              <Table
+                aria-label="Files table"
+                isHeaderSticky
+                bottomContent={bottomContent}
+                bottomContentPlacement="outside"
+                classNames={{
+                  wrapper: 'overflow-x-auto rounded-lg p-0 gap-1',
+                  table:
+                    'bg-white min-w-[995px] md:min-w-full table-fixed text-[14px]',
+                  th: 'bg-[#006EBD] text-white [&_th]:p-3 font-bold text-[14px] text-center',
+                  td: 'text-[14px]',
+                  thead: '[&_th]:p-3 rounded-none',
+                  tr: 'border-b odd:bg-white even:bg-[#F3F3F3] [&_td]:p-3 rounded-none',
+                }}
+                selectedKeys={selectedKeys}
+                sortDescriptor={sortDescriptor}
+                topContent={topContent}
+                topContentPlacement="outside"
+                onSelectionChange={setSelectedKeys}
+                onSortChange={setSortDescriptor}
+                layout="fixed"
+                isStriped
+              >
+                <TableHeader columns={headerColumns}>
+                  {(column) => (
+                    <TableColumn
+                      key={column.uid}
+                      align={
+                        column.uid === 'uploaded_by' || column.uid === 'actions'
+                          ? 'center'
+                          : 'start'
                       }
+                      allowsSorting={column.sortable}
+                      className={column.classname}
                     >
-                      <SelectItem key="25">25 items per page</SelectItem>
-                      <SelectItem key="50">50 items per page</SelectItem>
-                      <SelectItem key="100">100 items per page</SelectItem>
-                    </Select>
-                  </div>
-                  <div className="w-full md:w-1/3 text-right">
-                    <div className="relative w-full sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg 2xl:max-w-[400px] 2xl:float-right">
-                      <input
-                        type="text"
-                        placeholder="Search Files"
-                        className="border border-gray-300 rounded-3xl mx-auto p-3 pl-10 w-full focus:outline-none focus:border-[#006EBD] focus:border-2"
-                      />
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center cursor-pointer">
-                        <Search className="rounded-full mx-auto" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="overflow-x-auto rounded-lg">
-                  <table className=" bg-white shadow-md min-w-[995px] table-fixed">
-                    <thead>
-                      <tr className="bg-[#006EBD] text-white">
-                        <th className="py-3 px-3 text-left w-[130px]">
-                          File Name
-                        </th>
-                        <th className="py-3 px-3 text-right  w-[162px]">
-                          Last Updated
-                        </th>
-                        <th className="py-3 px-3 text-right  w-[126px]">
-                          Key Date
-                        </th>
-                        <th className="py-3 px-2 text-center  w-[109px]">
-                          Uploaded By
-                        </th>
-                        <th className="py-3 px-3 text-center  w-[147px]">
-                          Tags
-                        </th>
-                        <th className="py-3 px-3 text-center  w-[145px]">
-                          Notes
-                        </th>
-                        <th className="py-3 px-3 text-center  w-[96px]">
-                          Modify
-                        </th>
-                        <th className="py-3 px-3 text-center  w-[78px]">
-                          Actions
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b odd:bg-white even:bg-[#F3F3F3]">
-                        <td className="py-3 px-4">Filename.png</td>
-                        <td className="py-3 px-4 text-right">
-                          08-1-24 01:00 PM
-                        </td>
-                        <td className="py-3 px-4 text-right">July 29, 2024</td>
-                        <td className="py-3 px-4 text-center">Scott</td>
-                        <td className="py-3 px-4 text-center">
-                          tag1, tag2, tag3
-                        </td>
-                        <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button
-                            onClick={() =>
-                              setIsViewNoteModalOpen(!isViewNoteModalOpen)
-                            }
-                            className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto"
-                          >
-                            Show Notes
-                          </button>
-                        </td>
-
-                        <td className="py-3 px-4">
-                          <div className="flex gap-3 items-center justify-center">
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0">
-                              <Edit
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  setIsEditModalOpen(!isEditModalOpen)
-                                }
-                              />
-                            </div>
-                            <div className="flex items-center">
-                              <Delete
-                                className="cursor-pointer"
-                                onClick={() => setIsDeleteModalOpen(true)}
-                              />
-                            </div>
-                          </div>
-                        </td>
-
-                        <td className="py-3 px-4 text-center">
-                          <Dropdown>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                            >
-                              View
-                            </a>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                            >
-                              Download
-                            </a>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                              onClick={() => setIsShareModalOpen(true)}
-                            >
-                              Share
-                            </a>
-                          </Dropdown>
-                        </td>
-                      </tr>
-                      <tr className="border-b odd:bg-white even:bg-[#F3F3F3]">
-                        <td className="py-3 px-4">Filename.png</td>
-                        <td className="py-3 px-4 text-right">
-                          08-1-24 01:00 PM
-                        </td>
-                        <td className="py-3 px-4 text-right">July 29, 2024</td>
-                        <td className="py-3 px-4 text-center">Scott</td>
-                        <td className="py-3 px-4 text-center">
-                          tag1, tag2, tag3
-                        </td>
-                        <td className="py-3 px-4 flex sm:justify-start justify-center items-center">
-                          <button
-                            onClick={() =>
-                              setIsViewNoteModalOpen(!isViewNoteModalOpen)
-                            }
-                            className="bg-[#044F85] text-white rounded-3xl px-3 py-2 mx-auto"
-                          >
-                            Show Notes
-                          </button>
-                        </td>
-
-                        <td className="py-3 px-4">
-                          <div className="flex gap-3 items-center justify-center">
-                            <div className="flex border-r border-[#C7C7C7] lg:pr-2 pr-0 items-center sm:mb-0">
-                              <Edit
-                                className="cursor-pointer"
-                                onClick={() =>
-                                  setIsEditModalOpen(!isEditModalOpen)
-                                }
-                              />
-                            </div>
-                            <div className="flex items-center">
-                              <Delete
-                                className="cursor-pointer"
-                                onClick={() => setIsDeleteModalOpen(true)}
-                              />
-                            </div>
-                          </div>
-                        </td>
-
-                        <td className="py-3 px-4 text-center">
-                          <Dropdown>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                            >
-                              View
-                            </a>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                            >
-                              Download
-                            </a>
-                            <a
-                              href="#"
-                              className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
-                              onClick={() => setIsShareModalOpen(true)}
-                            >
-                              Share
-                            </a>
-                          </Dropdown>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-
-            {/* Pagination */}
-            <div className="flex justify-end items-center mt-4">
-              <div className="flex space-x-2">
-                <button className="h-8 p-1 rounded-lg mr-2">Prev</button>
-                <button className="bg-[#006EBD] text-white h-8 w-8 p-1 rounded-lg">
-                  1
-                </button>
-                <button className="h-8 w-8 pt-1 rounded-lg">2</button>
-                <button className="h-8 w-8 p-1 rounded-lg">3</button>
-                <button className="h-8 p-1 rounded-lg">Next</button>
-              </div>
+                      {column.name}
+                    </TableColumn>
+                  )}
+                </TableHeader>
+                <TableBody emptyContent={'No files found'} items={sortedItems}>
+                  {(item) => (
+                    <TableRow key={item.filename}>
+                      {(columnKey) => (
+                        <TableCell>{renderCell(item, columnKey)}</TableCell>
+                      )}
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
             </div>
           </div>
         </div>
@@ -355,6 +456,12 @@ export default function Home() {
         <EditModal
           isModalOpen={isEditModalOpen}
           setIsModalOpen={setIsEditModalOpen}
+        />
+      )}
+      {isViewHintModalOpen && (
+        <ViewHintModal
+          isModalOpen={isViewHintModalOpen}
+          setIsModalOpen={setIsViewHintModalOpen}
         />
       )}
     </main>

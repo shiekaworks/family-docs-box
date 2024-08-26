@@ -31,7 +31,7 @@ export const Dropdown: React.FC<ModalProps> = ({ children }) => {
   }, []);
 
   return (
-    <div className="inline-block text-left z-50" ref={dropdownRef}>
+    <div className="inline-block text-left " ref={dropdownRef}>
       <MoreIcon
         className="cursor-pointer"
         aria-expanded={isOpen}
@@ -40,7 +40,7 @@ export const Dropdown: React.FC<ModalProps> = ({ children }) => {
       />
 
       {isOpen && (
-        <div className="absolute right-20 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div className="absolute right-0 z-10 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">{children}</div>
         </div>
       )}
