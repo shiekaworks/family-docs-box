@@ -1,4 +1,4 @@
-import Select from 'react-select';
+import Creatable from 'react-select/creatable';
 
 interface ModalProps {
   isMulti: boolean;
@@ -35,7 +35,7 @@ export const MultipleSelect: React.FC<ModalProps> = ({
 
   return (
     <div>
-      <Select
+      <Creatable
         options={options}
         onChange={onChange}
         controlShouldRenderValue={!isMulti}
