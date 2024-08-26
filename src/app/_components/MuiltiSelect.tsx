@@ -25,7 +25,7 @@ export const MultipleSelect: React.FC<ModalProps> = ({
   };
 
   const customStyles = {
-    control: (provided): any => ({
+    control: (provided: any): any => ({
       ...provided,
       borderRadius: '1.5rem',
       borderColor: '#cbd5e0',
