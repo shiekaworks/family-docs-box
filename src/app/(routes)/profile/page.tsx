@@ -1,12 +1,12 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import ArrowLeft from "@/app/_assets/icons/arrow_left.svg";
-import user_profile from "@/app/_assets/images/user_profile.png";
-import Camera from "@/app/_assets/icons/camera.svg";
-import Share from "../_share/page";
-import { Sidebar } from "@/app/_components/Sidebar";
-import ProfileChangePasswordModal from "../_profile-change-password/page";
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
+import ArrowLeft from '@/app/_assets/icons/arrow_left.svg';
+import user_profile from '@/app/_assets/images/user_profile.png';
+import Camera from '@/app/_assets/icons/camera.svg';
+import Share from '../_share/page';
+import { Sidebar } from '@/app/_components/Sidebar';
+import ProfileChangePasswordModal from '../_profile-change-password/page';
 
 export default function Profile() {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -78,7 +78,7 @@ export default function Profile() {
                         <label className="pl-4">User role</label>
                         <input
                           type="text"
-                          placeholder="Account owner"
+                          placeholder="Head of household"
                           className="mt-1 w-full px-4 py-3 border-[1px] border-[#E2E2E2] border-solid rounded-full text-md focus:outline-none focus:border-[#006EBD] focus:border-2"
                           disabled
                         />

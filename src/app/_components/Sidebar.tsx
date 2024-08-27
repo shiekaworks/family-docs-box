@@ -1,15 +1,15 @@
-import React from "react";
-import { useState } from "react";
-import { poppins } from "@/app/_assets/fonts";
-import Image from "next/image";
-import profile from "@/app/_assets/images/Profile.png";
-import HomeIcon from "@/app/_assets/icons/home.svg";
-import FamIcon from "@/app/_assets/icons/family.svg";
-import SettingsIcon from "@/app/_assets/icons/settings.svg";
-import LogOutIcon from "@/app/_assets/icons/logout.svg";
-import Logo from "@/app/_assets/images/famdocsbox-logo.png";
-import LogoutConfirmationModal from "../(routes)/_logout-confirmation/page";
-import BurgerIcon from "./Burger";
+import React from 'react';
+import { useState } from 'react';
+import { poppins } from '@/app/_assets/fonts';
+import Image from 'next/image';
+import profile from '@/app/_assets/images/Profile.png';
+import HomeIcon from '@/app/_assets/icons/home.svg';
+import FamIcon from '@/app/_assets/icons/family.svg';
+import SettingsIcon from '@/app/_assets/icons/settings.svg';
+import LogOutIcon from '@/app/_assets/icons/logout.svg';
+import Logo from '@/app/_assets/images/famdocsbox-logo.png';
+import LogoutConfirmationModal from '../(routes)/_logout-confirmation/page';
+import BurgerIcon from './Burger';
 
 export const Sidebar = (): React.JSX.Element => {
   const [isViewConfirmationModalOpen, setIsViewConfirmationModalOpen] =
@@ -31,7 +31,7 @@ export const Sidebar = (): React.JSX.Element => {
                   height={150}
                   className="rounded-full mb-6 mx-auto"
                 />
-                <p className="text-lg md:text-xl font-bold">Jane Doe</p>{" "}
+                <p className="text-lg md:text-xl font-bold">Jane Doe</p>{' '}
                 <p className="text-[#939393] text-xs">HEAD OF HOUSEHOLD</p>
               </div>
               <ul className="mb-5 lg:mb-20">
@@ -72,7 +72,7 @@ export const Sidebar = (): React.JSX.Element => {
             </>
           </BurgerIcon>
           <a href="/">
-            <Image src={Logo} alt="Logo" height={50} />
+            <Image src={Logo} alt="Logo" height={50} className="mx-auto" />
           </a>
 
           <button className="flex cursor-pointer items-center lg:hidden">
@@ -92,7 +92,7 @@ export const Sidebar = (): React.JSX.Element => {
               height={150}
               className="rounded-full mb-6 mx-auto"
             />
-            <p className="text-lg md:text-xl font-bold">Jane Doe</p>{" "}
+            <p className="text-lg md:text-xl font-bold">Jane Doe</p>{' '}
             <p className="text-[#939393] text-xs">HEAD OF HOUSEHOLD</p>
           </div>
           <ul className="mb-5 lg:mb-20">
